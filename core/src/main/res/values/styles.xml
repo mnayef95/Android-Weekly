@@ -1,0 +1,6 @@
+<resources>
+
+    <style name="AppTheme" />
+
+    <style name="AppTheme.LightStatusBar" />
+</resources>
