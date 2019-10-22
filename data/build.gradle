@@ -1,0 +1,8 @@
+apply plugin: 'com.squareup.sqldelight'
+
+android {
+
+    productFlavors.all {
+        buildConfigField("String", "BASE_URL", "\"" + getProperty("app.base.url") + "\"")
+    }
+}
