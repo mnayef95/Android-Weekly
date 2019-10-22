@@ -13,6 +13,5 @@ unused.txt
 *.hprof
 core/
 data/
-splash/
 main/
 latest-issue/
