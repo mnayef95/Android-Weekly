@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/title_menu_activity_main_navigation_view_android_weekly">
+
+        <menu>
+
+            <item
+                android:id="@+id/item_menu_activity_main_navigation_view_about"
+                android:icon="@drawable/ic_about"
+                android:title="@string/title_menu_activity_main_navigation_view_about" />
+
+            <item
+                android:id="@+id/item_menu_activity_main_navigation_view_contact_us"
+                android:icon="@drawable/ic_contact_us"
+                android:title="@string/title_menu_activity_main_navigation_view_contact_us" />
+
+            <item
+                android:id="@+id/item_menu_activity_main_navigation_view_imprint"
+                android:icon="@drawable/ic_imprint"
+                android:title="@string/title_menu_activity_main_navigation_view_imprint" />
+
+            <item
+                android:id="@+id/item_menu_activity_main_navigation_view_privacy"
+                android:icon="@drawable/ic_privacy"
+                android:title="@string/title_menu_activity_main_navigation_view_privacy" />
+        </menu>
+    </item>
+
+    <item android:title="@string/title_menu_activity_main_navigation_view_projects">
+
+        <menu>
+
+            <item
+                android:id="@+id/item_menu_activity_main_navigation_view_photo_editor_for_android"
+                android:icon="@drawable/ic_editor"
+                android:title="@string/title_menu_activity_main_navigation_view_photo_editor_for_android" />
+
+            <item
+                android:id="@+id/item_menu_activity_main_navigation_view_pspdfkit"
+                android:icon="@drawable/ic_pdf"
+                android:title="@string/title_menu_activity_main_navigation_view_pspdfkit" />
+        </menu>
+    </item>
+
+    <item android:title="@string/title_menu_activity_main_navigation_view_social">
+
+        <menu>
+
+            <item
+                android:id="@+id/item_menu_activity_main_navigation_view_google_plus"
+                android:icon="@drawable/ic_google_plus"
+                android:title="@string/title_menu_activity_main_navigation_view_google_plus" />
+
+            <item
+                android:id="@+id/item_menu_activity_main_navigation_view_twitter"
+                android:icon="@drawable/ic_twitter"
+                android:title="@string/title_menu_activity_main_navigation_view_twitter" />
+
+            <item
+                android:id="@+id/item_menu_activity_main_navigation_view_facebook"
+                android:icon="@drawable/ic_facebook"
+                android:title="@string/title_menu_activity_main_navigation_view_facebook" />
+        </menu>
+    </item>
+</menu>
