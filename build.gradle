@@ -1,0 +1,144 @@
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
+    include '**/*.kt'
+    include '**/*.kts'
+    exclude 'build/'
+
+    for (int i = 0; i < subprojects.size(); i++) {
+        exclude subprojects[i].project.name + "/build/"
+    }
+}
+
+detekt {
+    input = files("$projectDir")
+    config = files("$rootDir/detekt_config.yml")
+    parallel = true
+    reports {
+        txt.enabled = false
+        xml.enabled = false
+        html.destination = file("build/reports/detekt.html")
+    }
+}
+
+buildscript {
+    ext.kotlin_version = '1.3.50'
+
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://maven.fabric.io/public"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0"
+        classpath "com.dicedmelon.gradle:jacoco-android:0.1.4"
+        classpath 'com.squareup.sqldelight:gradle-plugin:1.2.0'
+    }
+}
+
+allprojects {
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+}
+
+subprojects {
+    if (project.name == "app") {
+        apply plugin: "com.android.application"
+    } else {
+        apply plugin: "com.android.library"
+    }
+    apply plugin: "kotlin-android"
+    apply plugin: "kotlin-android-extensions"
+    apply plugin: "kotlin-kapt"
+    apply plugin: "jacoco-android"
+
+    android {
+        compileSdkVersion 29
+        buildToolsVersion "29.0.2"
+
+        dataBinding {
+            enabled true
+        }
+
+        defaultConfig {
+            if (project.name == "app") {
+                applicationId "net.androidweekly"
+            }
+
+            minSdkVersion 21
+            targetSdkVersion 29
+
+            versionCode Integer.parseInt(getProperty("app.versionCode"))
+            versionName getProperty("app.versionName")
+        }
+
+        buildTypes {
+
+            release {
+                minifyEnabled true
+                proguardFiles getDefaultProguardFile("proguard-android.txt"), project.projectDir.path + "/proguard-rules.pro"
+            }
+        }
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        flavorDimensions("version")
+        productFlavors {
+
+            development {
+                if (project.name == "app") {
+                    versionNameSuffix = "-development"
+                    applicationIdSuffix = ".development"
+                }
+            }
+
+            staging {
+                if (project.name == "app") {
+                    versionNameSuffix = "-staging"
+                    applicationIdSuffix = ".staging"
+                }
+            }
+
+            production {}
+        }
+
+        kotlinOptions {
+            freeCompilerArgs += "-Xuse-experimental=kotlin.Experimental"
+            jvmTarget = "1.8"
+        }
+
+        testOptions.unitTests.all {
+            testOptions.unitTests.includeAndroidResources = true
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
+    apply from: rootDir.path + "/dependencies.gradle"
+
+    jacoco {
+        toolVersion = "0.8.4"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,94 @@
+android {
+
+    configurations.all {
+
+        resolutionStrategy {
+            force 'org.objenesis:objenesis:2.5.1'
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+            force "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+            force "androidx.fragment:fragment:1.1.0"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ["*.jar"], dir: "libs")
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation "com.google.android.material:material:1.1.0-beta01"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
+
+    // Kotlin coroutines for asynchronous programming and more
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2"
+
+    // For make an http requests
+    implementation "com.squareup.retrofit2:retrofit:2.6.2"
+    implementation "com.squareup.retrofit2:converter-moshi:2.6.2"
+    implementation 'pl.droidsonroids:jspoon:1.0.0'
+    implementation 'pl.droidsonroids.retrofit2:converter-jspoon:1.0.0'
+
+    // For dependency injection
+    implementation "com.google.dagger:dagger:2.24"
+    implementation "com.google.dagger:dagger-android-support:2.24"
+    kapt "com.google.dagger:dagger-compiler:2.24"
+    kapt "com.google.dagger:dagger-android-processor:2.24"
+
+    // Android ViewModel architecture component
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-beta01"
+
+    // For support kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    // For use glide to load images
+    implementation "com.github.bumptech.glide:glide:4.10.0"
+    kapt "com.github.bumptech.glide:compiler:4.10.0"
+
+    // For use new android navigation library
+    implementation "androidx.navigation:navigation-fragment:2.1.0"
+    implementation "androidx.navigation:navigation-ui:2.1.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.1.0"
+    implementation "androidx.navigation:navigation-common-ktx:2.1.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.1.0"
+
+    // For unit test
+    testImplementation "io.mockk:mockk:1.9.3"
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'android.arch.core:core-testing:1.1.1'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.2'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2"
+    testImplementation 'org.json:json:20190722'
+    testImplementation 'org.robolectric:robolectric:4.3'
+
+    // For instrumentation test
+    androidTestImplementation "io.mockk:mockk-android:1.9.3"
+    androidTestImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.2.0"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:2.24"
+    kaptAndroidTest "com.google.dagger:dagger-android-processor:2.24"
+
+    // For detect memory leaks
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'
+
+    // Replacement for the Java date and time classes
+    implementation 'net.danlew:android.joda:2.10.1.2'
+
+    // Paper is a fast NoSQL-like storage for Java/Kotlin objects on Android with automatic schema migration support.
+    implementation 'io.paperdb:paperdb:2.6'
+
+    // For use google chrome activity in our application
+    implementation 'com.android.support:customtabs:28.0.0'
+
+    // For debug
+    developmentImplementation 'com.github.whataa:pandora:androidx_v2.0.5'
+    stagingImplementation 'com.github.whataa:pandora:androidx_v2.0.5'
+    productionImplementation 'com.github.whataa:pandora-no-op:v2.0.1'
+}
