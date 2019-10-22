@@ -12,6 +12,5 @@ seeds.txt
 unused.txt
 *.hprof
 core/
-data/
 main/
 latest-issue/
