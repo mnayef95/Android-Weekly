@@ -11,6 +11,5 @@ mapping.txt
 seeds.txt
 unused.txt
 *.hprof
-core/
 main/
 latest-issue/
