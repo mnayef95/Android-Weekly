@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_header_activity_main_navigation_view_subscribe"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"

@@ -4,7 +4,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import net.androidweekly.core.BaseViewModel
-import net.androidweekly.data.models.issues.IssueItem
+import net.androidweekly.data.models.items.IssueItem
+import net.androidweekly.data.models.items.IssueTitle
+import net.androidweekly.data.models.items.Item
+import net.androidweekly.data.repositories.issues.IssuesRepository
 
 /**
  * Project: Android Weekly
@@ -12,20 +15,27 @@ import net.androidweekly.data.models.issues.IssueItem
  *
  * @author Mohamed Hamdan
  */
-class LatestIssueViewModel : BaseViewModel(), LifecycleObserver {
+class LatestIssueViewModel(
+    private val issuesRepository: IssuesRepository
+) : BaseViewModel(), LifecycleObserver {
 
-    private val list: MutableList<IssueItem> = mutableListOf()
+    private val items: MutableList<Item> = mutableListOf()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
-        // No impl
+        items.addAll(
+            listOf(
+                IssueTitle(title = "Mohamed"),
+                IssueItem(title = "Mohamed")
+            )
+        )
     }
 
-    fun getIssueCount(): Int {
-        return list.size
+    fun getItemsCount(): Int {
+        return items.size
     }
 
-    fun getIssue(position: Int): IssueItem? {
-        return list[position]
+    fun getItem(position: Int): Item {
+        return items[position]
     }
 }

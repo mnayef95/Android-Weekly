@@ -1,7 +1,8 @@
 package net.androidweekly.data.models.issues
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import net.androidweekly.data.models.items.IssueItem
+import org.simpleframework.xml.Element
+import org.simpleframework.xml.Root
 
 /**
  * Project: Android Weekly
@@ -9,21 +10,23 @@ import com.squareup.moshi.JsonClass
  *
  * @author Mohamed Hamdan
  */
-@JsonClass(generateAdapter = true)
+@Root(name = "item", strict = false)
 data class Issue(
 
-    @Json(name = "id")
-    val id: Long,
+    @field:Element(name = "title", required = false)
+    var title: String? = null,
 
-    @Json(name = "title")
-    val title: String?,
+    @field:Element(name = "link", required = false)
+    var link: String? = null,
 
-    @Json(name = "title")
-    val url: String?,
+    @field:Element(name = "description", required = false)
+    var description: String? = null,
 
-    @Json(name = "description")
-    val description: String?,
+    @field:Element(name = "pubDate", required = false)
+    var publishDate: String? = null
+) {
 
-    @Json(name = "image")
-    val image: String?
-) : IssueItem
+    fun getItems(): List<IssueItem> {
+        return listOf()
+    }
+}

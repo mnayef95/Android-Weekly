@@ -21,7 +21,7 @@ import javax.inject.Singleton
         AppModule::class,
         ActivityBuilderModule::class,
         RepositoriesModule::class,
-        ServicesModule::class,
+        DaosModule::class,
         CommonModule::class,
         FragmentBuilderModule::class,
         NetworkModule::class

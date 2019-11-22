@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="err_network_timeout_title">Timeout</string>
+    <string name="err_network_timeout_message">You\'re being timed out due to late response from the server side, please try again.</string>
+
+    <string name="err_network_internet_title">No Internet Connection</string>
+    <string name="err_network_internet_message">Uh oh..Looks like you are no longer connected to the Internet, reconnect and try again.</string>
+
+    <string name="err_network_unexpected_title">Unexpected Error</string>
+    <string name="err_network_unexpected_message">Unexpected error occurred, please try again.</string>
+
+    <string name="err_network_client_title">Client Error</string>
+    <string name="err_network_client_message">An error has occurred during request, please try again.</string>
+
+    <string name="err_network_server_title">Server Error</string>
+    <string name="err_network_server_message">The server encountered a temporary error and could not lead you to your destination, please try again.</string>
+</resources>

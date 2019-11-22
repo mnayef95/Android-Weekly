@@ -3,6 +3,8 @@ package net.androidweekly.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import dagger.Module
 import dagger.Provides
 import io.paperdb.Book
@@ -13,6 +15,7 @@ import net.androidweekly.data.binding.BindingAdapters
 import net.androidweekly.data.binding.BindingAdaptersImpl
 import net.androidweekly.data.prefs.Prefs
 import net.androidweekly.data.prefs.PrefsImpl
+import net.androidweekly.main.R
 import javax.inject.Singleton
 
 /**
@@ -67,5 +70,14 @@ object CommonModule {
     @Provides
     fun provideBindingAdapters(): BindingAdapters {
         return BindingAdaptersImpl()
+    }
+
+    @JvmStatic
+    @Singleton
+    @Provides
+    fun provideCustomTabsIntent(context: Application): CustomTabsIntent {
+        return CustomTabsIntent.Builder()
+            .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            .build()
     }
 }

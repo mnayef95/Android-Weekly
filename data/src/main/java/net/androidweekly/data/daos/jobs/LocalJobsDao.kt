@@ -1,6 +1,4 @@
-package net.androidweekly.di
-
-import dagger.Module
+package net.androidweekly.data.daos.jobs
 
 /**
  * Project: Android Weekly
@@ -8,5 +6,3 @@ import dagger.Module
  *
  * @author Mohamed Hamdan
  */
-@Module
-class ServicesModule

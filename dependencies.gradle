@@ -14,10 +14,10 @@ android {
 dependencies {
     implementation fileTree(include: ["*.jar"], dir: "libs")
     implementation "androidx.appcompat:appcompat:1.1.0"
-    implementation "androidx.recyclerview:recyclerview:1.0.0"
-    implementation "com.google.android.material:material:1.1.0-beta01"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "com.google.android.material:material:1.2.0-alpha01"
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta3"
 
     // Kotlin coroutines for asynchronous programming and more
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
@@ -25,7 +25,7 @@ dependencies {
 
     // For make an http requests
     implementation "com.squareup.retrofit2:retrofit:2.6.2"
-    implementation "com.squareup.retrofit2:converter-moshi:2.6.2"
+    implementation 'com.squareup.retrofit2:converter-simplexml:2.6.2'
     implementation 'pl.droidsonroids:jspoon:1.0.0'
     implementation 'pl.droidsonroids.retrofit2:converter-jspoon:1.0.0'
 
@@ -36,10 +36,10 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:2.24"
 
     // Android ViewModel architecture component
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-beta01"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-beta01"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-beta01"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
 
     // For support kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
@@ -79,7 +79,7 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'
 
     // Replacement for the Java date and time classes
-    implementation 'net.danlew:android.joda:2.10.1.2'
+    implementation 'net.danlew:android.joda:2.10.3'
 
     // Paper is a fast NoSQL-like storage for Java/Kotlin objects on Android with automatic schema migration support.
     implementation 'io.paperdb:paperdb:2.6'

@@ -2,7 +2,6 @@ dependencies {
     implementation project(':core')
     implementation project(":splash")
     implementation project(":main")
-    implementation project(':latest-issue')
 }
 apply from: rootDir.path + "/githooks.gradle"
 

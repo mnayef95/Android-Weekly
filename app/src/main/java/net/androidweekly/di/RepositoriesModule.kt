@@ -1,6 +1,11 @@
 package net.androidweekly.di
 
+import dagger.Binds
 import dagger.Module
+import net.androidweekly.data.repositories.issues.IssuesRepository
+import net.androidweekly.data.repositories.issues.IssuesRepositoryImpl
+import net.androidweekly.data.repositories.jobs.JobsRepository
+import net.androidweekly.data.repositories.jobs.JobsRepositoryImpl
 
 /**
  * Project: Android Weekly
@@ -9,4 +14,11 @@ import dagger.Module
  * @author Mohamed Hamdan
  */
 @Module
-class RepositoriesModule
+abstract class RepositoriesModule {
+
+    @Binds
+    abstract fun provideIssuesRepository(issuesRepository: IssuesRepositoryImpl): IssuesRepository
+
+    @Binds
+    abstract fun provideJobsRepository(jobsRepository: JobsRepositoryImpl): JobsRepository
+}
