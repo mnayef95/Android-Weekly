@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name" />
+    <string name="button_view_error_retry">Retry</string>
 </resources>

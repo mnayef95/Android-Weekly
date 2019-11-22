@@ -14,5 +14,5 @@
         android:orientation="vertical"
         android:paddingBottom="80dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/row_issue" />
+        tools:listitem="@layout/row_item" />
 </LinearLayout>

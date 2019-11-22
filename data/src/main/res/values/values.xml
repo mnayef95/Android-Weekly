@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="row_item" type="layout" />
+    <item name="row_title" type="layout" />
+</resources>

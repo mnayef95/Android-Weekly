@@ -19,4 +19,6 @@
     <string name="title_menu_activity_main_navigation_view_twitter">Twitter</string>
     <string name="title_menu_activity_main_navigation_view_facebook">Facebook</string>
     <string name="button_header_activity_main_navigation_view_subscribe">Subscribe</string>
+
+    <string name="message_email_component_not_found">There is no email application installed in your device.</string>
 </resources>

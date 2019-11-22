@@ -1,4 +1,5 @@
 dependencies {
     implementation project(':core')
-    implementation project(':latest-issue')
+    api project(':latest-issue')
+    api project(':jobs')
 }

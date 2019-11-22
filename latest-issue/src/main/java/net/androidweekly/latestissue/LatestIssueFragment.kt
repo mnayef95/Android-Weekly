@@ -19,7 +19,7 @@ class LatestIssueFragment : BaseFragment() {
     lateinit var viewModel: LatestIssueViewModel
 
     private val recyclerView: RecyclerView? by bindView(R.id.recycler_view_fragment_latest_issue)
-    private val adapter by lazy { LatestIssuesAdapter(viewModel) }
+    private var adapter: LatestIssuesAdapter? = null
 
     override val layoutId: Int = R.layout.fragment_latest_issue
 
@@ -27,6 +27,8 @@ class LatestIssueFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycle.addObserver(viewModel)
+
+        adapter = LatestIssuesAdapter(viewModel)
         recyclerView?.adapter = adapter
     }
 }

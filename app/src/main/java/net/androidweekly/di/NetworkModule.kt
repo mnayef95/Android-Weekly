@@ -1,15 +1,15 @@
 package net.androidweekly.di
 
-import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import net.androidweekly.data.BuildConfig
 import okhttp3.OkHttpClient
-import retrofit2.Converter
+import pl.droidsonroids.retrofit2.JspoonConverterFactory
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import tech.linjiang.pandora.Pandora
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -20,6 +20,9 @@ import javax.inject.Singleton
  */
 @Module
 object NetworkModule {
+
+    const val HTML_RETROFIT = "htmlRetrofit"
+    const val XML_RETROFIT = "xmlRetrofit"
 
     private const val TIMEOUT_MINUTES = 1L
 
@@ -35,28 +38,27 @@ object NetworkModule {
             .build()
     }
 
+    @Named(XML_RETROFIT)
     @JvmStatic
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, converter: Converter.Factory): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(converter)
             .client(okHttpClient)
+            .addConverterFactory(SimpleXmlConverterFactory.create())
             .build()
     }
 
+    @Named(HTML_RETROFIT)
     @JvmStatic
     @Provides
     @Singleton
-    fun provideConverterFactory(moshi: Moshi): Converter.Factory {
-        return MoshiConverterFactory.create(moshi)
-    }
-
-    @JvmStatic
-    @Provides
-    @Singleton
-    fun provideMoshi(): Moshi {
-        return Moshi.Builder().build()
+    fun provideHtmlRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(JspoonConverterFactory.create())
+            .build()
     }
 }

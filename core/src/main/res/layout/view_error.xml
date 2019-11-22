@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_error" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_error_title"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="15dp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:layout_marginStart="15dp"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/lorem" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_error_message"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="15dp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        android:layout_marginStart="15dp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/lorem/random" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_view_error_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/button_view_error_retry" />
+</LinearLayout>

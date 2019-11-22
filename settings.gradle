@@ -1,5 +1,5 @@
 rootProject.name = "Android Weekly"
-include ':app', ':latest-issue'
+include ':app', ':latest-issue', ':jobs'
 include ':main'
 include ':data'
 include ':splash'

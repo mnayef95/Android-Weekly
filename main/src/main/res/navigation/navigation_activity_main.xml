@@ -15,7 +15,8 @@
 
     <fragment
         android:id="@+id/item_menu_activity_main_jobs"
-        android:name="net.androidweekly.latestissue.LatestIssueFragment" />
+        android:name="net.androidweekly.jobs.JobsFragment"
+        android:label="@string/title_menu_activity_main_navigation_view_jobs" />
 
     <fragment
         android:id="@+id/item_menu_activity_main_submit"

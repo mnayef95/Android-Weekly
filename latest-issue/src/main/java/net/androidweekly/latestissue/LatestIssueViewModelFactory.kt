@@ -2,6 +2,7 @@ package net.androidweekly.latestissue
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import net.androidweekly.data.repositories.issues.IssuesRepository
 import javax.inject.Inject
 
 /**
@@ -10,10 +11,12 @@ import javax.inject.Inject
  *
  * @author Mohamed Hamdan
  */
-class LatestIssueViewModelFactory @Inject constructor() : ViewModelProvider.Factory {
+class LatestIssueViewModelFactory @Inject constructor(
+    private val issuesRepository: IssuesRepository
+) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LatestIssueViewModel() as T
+        return LatestIssueViewModel(issuesRepository) as T
     }
 }
