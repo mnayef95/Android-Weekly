@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_activity_submit">Submit</string>
+    <string name="hint_activity_submit_link">Link</string>
+    <string name="chip_activity_submit_link">Link</string>
+    <string name="chip_activity_submit_conference">Conference</string>
+    <string name="title_activity_submit">What you want to submit?</string>
+    <string name="label_activity_submit">Submit</string>
+    <string name="validation_message_link_type">Please select link type</string>
+    <string name="toast_successfully_submitted_link">You link has been successfully submitted</string>
+    <string name="message_activity_submit_beta">Please note that this feature is still in beta</string>
+</resources>

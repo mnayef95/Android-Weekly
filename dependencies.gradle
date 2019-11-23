@@ -15,9 +15,10 @@ dependencies {
     implementation fileTree(include: ["*.jar"], dir: "libs")
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
-    implementation "com.google.android.material:material:1.2.0-alpha01"
+    implementation "com.google.android.material:material:1.2.0-alpha02"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta3"
+    implementation 'androidx.core:core-ktx:1.1.0'
 
     // Kotlin coroutines for asynchronous programming and more
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
@@ -91,4 +92,6 @@ dependencies {
     developmentImplementation 'com.github.whataa:pandora:androidx_v2.0.5'
     stagingImplementation 'com.github.whataa:pandora:androidx_v2.0.5'
     productionImplementation 'com.github.whataa:pandora-no-op:v2.0.1'
+
+    implementation 'com.mobsandgeeks:android-saripaar:2.0.3'
 }

@@ -1,8 +1,8 @@
 package net.androidweekly.data.repositories.issues
 
 import net.androidweekly.data.daos.issues.RemoteIssuesDao
+import net.androidweekly.data.models.issues.AuthenticityTokens
 import net.androidweekly.data.models.issues.IssueWrapper
-import javax.inject.Inject
 
 /**
  * Project: Android Weekly
@@ -10,12 +10,35 @@ import javax.inject.Inject
  *
  * @author Mohamed Hamdan
  */
-class IssuesRepositoryImpl @Inject constructor(
-    private val remoteIssuesDao: RemoteIssuesDao
-) : IssuesRepository {
+class IssuesRepositoryImpl(private val remoteIssuesDao: RemoteIssuesDao) : IssuesRepository {
 
     override suspend fun getLatestIssue(): IssueWrapper {
         val data = remoteIssuesDao.getAllIssues()
         return IssueWrapper()
+    }
+
+    override suspend fun getAuthenticityTokens(): AuthenticityTokens {
+        return remoteIssuesDao.getAuthenticityToken()
+    }
+
+    override suspend fun submitLink(link: String?, token: String?) {
+        val body = mapOf(
+            "link[url]" to link,
+            "utf8" to "&#x2713;",
+            "authenticity_token" to token,
+            "link[human]" to ""
+        )
+        remoteIssuesDao.submit(body)
+    }
+
+    override suspend fun submitConference(link: String?, token: String?) {
+        val body = mapOf(
+            "link[url]" to link,
+            "utf8" to "&#x2713;",
+            "authenticity_token" to token,
+            "link[conference]" to "1",
+            "link[human]" to ""
+        )
+        remoteIssuesDao.submit(body)
     }
 }

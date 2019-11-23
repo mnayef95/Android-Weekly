@@ -81,6 +81,7 @@
         </net.androidweekly.core.custom.views.CustomBottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button_activity_main_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"

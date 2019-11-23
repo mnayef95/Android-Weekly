@@ -1,8 +1,8 @@
-package net.androidweekly.latestissue
+package net.androidweekly.submit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import net.androidweekly.core.qualifiers.Xml
+import net.androidweekly.core.qualifiers.Html
 import net.androidweekly.data.repositories.issues.IssuesRepository
 import javax.inject.Inject
 
@@ -12,14 +12,14 @@ import javax.inject.Inject
  *
  * @author Mohamed Hamdan
  */
-class LatestIssueViewModelFactory @Inject constructor(
+class SubmitViewModelFactory @Inject constructor(
 
-    @Xml
+    @Html
     private val issuesRepository: IssuesRepository
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LatestIssueViewModel(issuesRepository) as T
+        return SubmitViewModel(issuesRepository) as T
     }
 }

@@ -15,10 +15,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import net.androidweekly.core.activities.BaseToolbarActivity
 import net.androidweekly.core.custom.views.CustomBottomAppBar
 import net.androidweekly.core.utils.android.bindView
+import net.androidweekly.submit.SubmitActivity
 import javax.inject.Inject
 
 /**
@@ -40,8 +42,13 @@ class MainActivity : BaseToolbarActivity() {
     private val bottomAppBar: CustomBottomAppBar? by bindView(R.id.bottom_app_bar_activity_main)
     private val drawerLayoutRoot: DrawerLayout? by bindView(R.id.drawer_layout_activity_main_root)
     private val navigationView: NavigationView? by bindView(R.id.navigation_view_activity_main)
+    private val floatingActionButtonSubmit: FloatingActionButton? by bindView(
+        R.id.floating_action_button_activity_main_submit
+    )
     private val navigationViewHeader: View? by lazy { navigationView?.getHeaderView(0) }
     private var buttonSubscribe: Button? = null
+
+    private val itemSubmit by lazy { bottomNavigationView?.menu?.findItem(R.id.item_menu_activity_main_submit) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,6 +92,14 @@ class MainActivity : BaseToolbarActivity() {
         buttonSubscribe?.setOnClickListener {
             onSubscribeButtonClicked()
         }
+
+        floatingActionButtonSubmit?.setOnClickListener { SubmitActivity.start(this, it) }
+
+        itemSubmit?.setOnMenuItemClickListener {
+            floatingActionButtonSubmit?.callOnClick()
+            return@setOnMenuItemClickListener false
+        }
+
         navigationView?.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.item_menu_activity_main_navigation_view_about -> {

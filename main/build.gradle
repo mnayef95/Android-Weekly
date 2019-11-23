@@ -2,4 +2,5 @@ dependencies {
     implementation project(':core')
     api project(':latest-issue')
     api project(':jobs')
+    api project(':submit')
 }
