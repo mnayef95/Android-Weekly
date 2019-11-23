@@ -2,6 +2,8 @@ package net.androidweekly.di
 
 import dagger.Module
 import dagger.Provides
+import net.androidweekly.core.qualifiers.Html
+import net.androidweekly.core.qualifiers.Xml
 import net.androidweekly.data.BuildConfig
 import okhttp3.OkHttpClient
 import pl.droidsonroids.retrofit2.JspoonConverterFactory
@@ -9,7 +11,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import tech.linjiang.pandora.Pandora
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -20,9 +21,6 @@ import javax.inject.Singleton
  */
 @Module
 object NetworkModule {
-
-    const val HTML_RETROFIT = "htmlRetrofit"
-    const val XML_RETROFIT = "xmlRetrofit"
 
     private const val TIMEOUT_MINUTES = 1L
 
@@ -35,10 +33,12 @@ object NetworkModule {
             .readTimeout(TIMEOUT_MINUTES, TimeUnit.MINUTES)
             .writeTimeout(TIMEOUT_MINUTES, TimeUnit.MINUTES)
             .connectTimeout(TIMEOUT_MINUTES, TimeUnit.MINUTES)
+            .followRedirects(true)
+            .followSslRedirects(true)
             .build()
     }
 
-    @Named(XML_RETROFIT)
+    @Xml
     @JvmStatic
     @Provides
     @Singleton
@@ -50,7 +50,7 @@ object NetworkModule {
             .build()
     }
 
-    @Named(HTML_RETROFIT)
+    @Html
     @JvmStatic
     @Provides
     @Singleton

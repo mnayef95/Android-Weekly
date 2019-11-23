@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraint_layout_activity_submit_root"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout_activity_submit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_activity_submit_title"
+        android:layout_width="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout_activity_submit" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_activity_submit_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:checkedChip="@+id/chip_activity_submit_link"
+        app:chipSpacingHorizontal="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_activity_submit_title"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_activity_submit_link"
+            android:layout_width="132dp"
+            android:text="@string/chip_activity_submit_link"
+            android:gravity="center"
+            android:checkable="true"
+            android:layout_height="wrap_content"
+            app:chipIcon="@drawable/ic_link" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_activity_submit_conference"
+            android:layout_width="132dp"
+            android:gravity="center"
+            android:checkable="true"
+            android:text="@string/chip_activity_submit_conference"
+            android:layout_height="wrap_content"
+            app:chipIcon="@drawable/ic_event" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_activity_submit_link"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/hint_activity_submit_link"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:boxBackgroundMode="outline"
+        app:boxCollapsedPaddingTop="0dp"
+        app:boxCornerRadiusBottomEnd="3dp"
+        app:boxCornerRadiusBottomStart="3dp"
+        app:boxCornerRadiusTopEnd="3dp"
+        app:boxCornerRadiusTopStart="3dp"
+        app:helperText="Links in each issue or conference will be chosen by Android Weekly. Please be aware that we can't pick every link. Thanks!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_group_activity_submit_type">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_activity_submit_link"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_activity_submit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_activity_submit"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_layout_activity_submit_link" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_activity_submit"
+        android:elevation="2dp"
+        android:visibility="gone"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_activity_submit"
+        app:layout_constraintEnd_toEndOf="@+id/button_activity_submit"
+        app:layout_constraintStart_toStartOf="@+id/button_activity_submit"
+        app:layout_constraintTop_toTopOf="@+id/button_activity_submit" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_activity_submit_beta_message"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/message_activity_submit_beta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_activity_submit" />
+</androidx.constraintlayout.widget.ConstraintLayout>

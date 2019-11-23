@@ -2,12 +2,13 @@ package net.androidweekly.di
 
 import dagger.Module
 import dagger.Provides
+import net.androidweekly.core.qualifiers.Html
+import net.androidweekly.core.qualifiers.Xml
 import net.androidweekly.data.daos.issues.RemoteIssuesDao
 import net.androidweekly.data.daos.jobs.LocalJobsDao
 import net.androidweekly.data.daos.jobs.RemoteJobsDao
 import net.androidweekly.data.database.Database
 import retrofit2.Retrofit
-import javax.inject.Named
 
 /**
  * Project: Android Weekly
@@ -18,15 +19,23 @@ import javax.inject.Named
 @Module
 object DaosModule {
 
+    @Xml
     @Provides
     @JvmStatic
-    fun provideRemoteIssuesDao(@Named(NetworkModule.XML_RETROFIT) retrofit: Retrofit): RemoteIssuesDao {
+    fun provideRemoteIssuesDao(@Xml retrofit: Retrofit): RemoteIssuesDao {
+        return retrofit.create(RemoteIssuesDao::class.java)
+    }
+
+    @Html
+    @Provides
+    @JvmStatic
+    fun provideHtmlRemoteIssuesDao(@Html retrofit: Retrofit): RemoteIssuesDao {
         return retrofit.create(RemoteIssuesDao::class.java)
     }
 
     @Provides
     @JvmStatic
-    fun provideRemoteJobsDao(@Named(NetworkModule.HTML_RETROFIT) retrofit: Retrofit): RemoteJobsDao {
+    fun provideRemoteJobsDao(@Html retrofit: Retrofit): RemoteJobsDao {
         return retrofit.create(RemoteJobsDao::class.java)
     }
 

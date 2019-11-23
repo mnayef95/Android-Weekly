@@ -121,6 +121,9 @@ class JobsFragment : BaseFragment() {
         recyclerView?.adapter = null
         recyclerView = null
         adapter = null
+        constraintLayoutParent = null
+        cardViewLocalJobsMessage = null
+        buttonLocalJobsRetry = null
         super.onDestroyView()
     }
 }

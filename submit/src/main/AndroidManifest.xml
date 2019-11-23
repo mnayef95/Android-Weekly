@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.androidweekly.submit">
+
+    <application>
+
+        <activity
+            android:name=".SubmitActivity"
+            android:label="@string/label_activity_submit"
+            android:theme="@style/AppTheme.Submit" />
+    </application>
+</manifest>
