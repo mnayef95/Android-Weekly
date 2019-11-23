@@ -23,3 +23,6 @@ If you'd like to contribute, please take a look at the issue tracker, For new fe
 Use AndroidWeeklyCodeStyle.xml for Android Studio code styles. Check this link for more information about how you can import code style in Android Studio.
 
 Please set your Android studio kotlin code style based on Kotlin Coding Conventions. Check this link for more information about Kotlin Coding Conventions in Android Studio.
+
+# For adding new feature
+Please make sure that each new feature should be in a new module with implementing core dependency, so we can change these modules to dynamic-feature in the future if we want.
