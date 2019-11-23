@@ -3,9 +3,13 @@ package net.androidweekly.jobs
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionManager
 import net.androidweekly.core.custom.views.ErrorView
 import net.androidweekly.core.fragments.BaseFragment
 import net.androidweekly.core.utils.android.observe
@@ -29,6 +33,9 @@ class JobsFragment : BaseFragment() {
     private var recyclerView: RecyclerView? = null
     private var progressBar: ProgressBar? = null
     private var errorView: ErrorView? = null
+    private var cardViewLocalJobsMessage: CardView? = null
+    private var buttonLocalJobsRetry: Button? = null
+    private var constraintLayoutParent: ConstraintLayout? = null
 
     private var adapter: JobsAdapter? = null
 
@@ -37,39 +44,34 @@ class JobsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        initAdapter()
         initListeners()
         getJobs()
-    }
-
-    override fun onDestroyView() {
-        errorView?.setOnRetryClickListener(null)
-        errorView = null
-        progressBar = null
-        recyclerView?.adapter = null
-        recyclerView = null
-        adapter = null
-        super.onDestroyView()
     }
 
     private fun initViews() {
         recyclerView = view?.findViewById(R.id.recycler_view_fragment_jobs)
         progressBar = view?.findViewById(R.id.progress_bar_fragment_jobs)
         errorView = view?.findViewById(R.id.error_view_fragment_jobs)
-    }
-
-    private fun initAdapter() {
-        adapter = JobsAdapter(viewModel)
-        recyclerView?.adapter = adapter
+        cardViewLocalJobsMessage = view?.findViewById(R.id.card_view_fragment_jobs_local_jobs_message)
+        buttonLocalJobsRetry = view?.findViewById(R.id.button_fragment_jobs_local_jobs_retry)
+        constraintLayoutParent = view?.findViewById(R.id.constraint_layout_fragment_jobs_parent)
     }
 
     private fun initListeners() {
-        adapter?.setOnItemClickListener { _, position ->
-            val job = viewModel.getJob(position)
-            customTabsIntent.launchUrl(context, Uri.parse(job.url))
+        errorView?.setOnRetryClickListener { getJobs() }
+
+        viewModel.remoteJobsFailedLiveData.observe(this) {
+            TransitionManager.endTransitions(constraintLayoutParent!!)
+            cardViewLocalJobsMessage?.visibility = View.VISIBLE
+            initAdapter()
         }
 
-        errorView?.setOnRetryClickListener { getJobs() }
+        buttonLocalJobsRetry?.setOnClickListener {
+            TransitionManager.beginDelayedTransition(constraintLayoutParent!!)
+            cardViewLocalJobsMessage?.visibility = View.GONE
+            getJobs()
+            adapter?.notifyDataSetChanged()
+        }
     }
 
     private fun getJobs() {
@@ -95,12 +97,30 @@ class JobsFragment : BaseFragment() {
     }
 
     private fun handleSuccessResource() {
-        adapter?.notifyDataSetChanged()
-        handleLoadingResource(Resource.Loading(show = false))
+        initAdapter()
     }
 
     private fun handleErrorResource(resource: Resource.Error) {
         errorView?.setError(resource)
-        handleLoadingResource(Resource.Loading(show = false))
+    }
+
+    private fun initAdapter() {
+        adapter = JobsAdapter(viewModel)
+        recyclerView?.adapter = adapter
+
+        adapter?.setOnItemClickListener { _, position ->
+            val job = viewModel.getJob(position)
+            customTabsIntent.launchUrl(context, Uri.parse(job?.url))
+        }
+    }
+
+    override fun onDestroyView() {
+        errorView?.setOnRetryClickListener(null)
+        errorView = null
+        progressBar = null
+        recyclerView?.adapter = null
+        recyclerView = null
+        adapter = null
+        super.onDestroyView()
     }
 }

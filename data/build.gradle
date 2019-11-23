@@ -1,8 +1,13 @@
-apply plugin: 'com.squareup.sqldelight'
-
 android {
 
     productFlavors.all {
-        buildConfigField("String", "BASE_URL", "\"" + getProperty("app.base.url") + "\"")
+        buildConfigField("String", "ISSUES_BASE_URL", "\"" + getProperty("app.issues.base.url") + "\"")
+        buildConfigField("String", "JOBS_BASE_URL", "\"" + getProperty("app.jobs.base.url") + "\"")
     }
+}
+
+dependencies {
+    implementation "androidx.room:room-runtime:2.2.2"
+    kapt "androidx.room:room-compiler:2.2.2"
+    implementation "androidx.room:room-ktx:2.2.2"
 }

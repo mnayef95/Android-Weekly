@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message_fragment_jobs_local_jobs">There was a problem getting a jobs from remote source, all jobs in this page are from local source.</string>
+</resources>
