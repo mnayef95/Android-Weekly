@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import io.paperdb.Book
@@ -13,6 +14,7 @@ import net.androidweekly.data.CoroutinesContextProvider
 import net.androidweekly.data.CoroutinesContextProviderImpl
 import net.androidweekly.data.binding.BindingAdapters
 import net.androidweekly.data.binding.BindingAdaptersImpl
+import net.androidweekly.data.database.Database
 import net.androidweekly.data.prefs.Prefs
 import net.androidweekly.data.prefs.PrefsImpl
 import net.androidweekly.main.R
@@ -28,6 +30,7 @@ import javax.inject.Singleton
 object CommonModule {
 
     private const val SHARED_PREFERENCES_NAME = "net.androidweekly"
+    private const val DATABASE_NAME = "androidweekly"
 
     // This injection is a workaround for a known issue in Gradle build system https://github.com/google/dagger/issues/955
     @JvmStatic
@@ -79,5 +82,12 @@ object CommonModule {
         return CustomTabsIntent.Builder()
             .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
             .build()
+    }
+
+    @JvmStatic
+    @Singleton
+    @Provides
+    fun provideDatabase(context: Application): Database {
+        return Room.databaseBuilder(context, Database::class.java, DATABASE_NAME).build()
     }
 }

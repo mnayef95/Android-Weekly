@@ -1,6 +1,6 @@
 package net.androidweekly.data.repositories.jobs
 
-import net.androidweekly.data.models.jobs.JobsWrapper
+import net.androidweekly.data.models.jobs.Job
 
 /**
  * Project: Android Weekly
@@ -10,5 +10,7 @@ import net.androidweekly.data.models.jobs.JobsWrapper
  */
 interface JobsRepository {
 
-    suspend fun getAllJobs(): JobsWrapper
+    suspend fun getRemoteJobs(): List<Job>?
+
+    suspend fun getLocalJobs(): List<Job>?
 }

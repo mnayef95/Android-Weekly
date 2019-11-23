@@ -11,6 +11,6 @@ import retrofit2.http.GET
  */
 interface RemoteIssuesDao {
 
-    @GET("https://us2.campaign-archive.com/feed?u=887caf4f48db76fd91e20a06d&id=4eb677ad19")
+    @GET("feed?u=887caf4f48db76fd91e20a06d&id=4eb677ad19")
     suspend fun getAllIssues(): IssueRss
 }

@@ -11,6 +11,6 @@ import retrofit2.http.GET
  */
 interface RemoteJobsDao {
 
-    @GET("https://androidweekly.net/jobs")
+    @GET("jobs")
     suspend fun getAllJobs(): JobsWrapper
 }

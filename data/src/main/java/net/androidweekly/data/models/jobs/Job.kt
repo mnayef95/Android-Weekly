@@ -1,5 +1,7 @@
 package net.androidweekly.data.models.jobs
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import pl.droidsonroids.jspoon.annotation.Selector
 
 /**
@@ -8,6 +10,7 @@ import pl.droidsonroids.jspoon.annotation.Selector
  *
  * @author Mohamed Hamdan
  */
+@Entity(tableName = "jobs")
 data class Job(
 
     @Selector("li .open-trigger strong")
@@ -19,6 +22,7 @@ data class Job(
     @Selector("li p.hidden")
     val description: String? = null,
 
+    @PrimaryKey
     @Selector("li a")
-    val url: String? = null
+    val url: String = ""
 )

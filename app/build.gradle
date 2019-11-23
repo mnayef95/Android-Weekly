@@ -1,4 +1,5 @@
 dependencies {
+    implementation "androidx.room:room-runtime:2.2.2"
     implementation project(':core')
     implementation project(":splash")
     implementation project(":main")

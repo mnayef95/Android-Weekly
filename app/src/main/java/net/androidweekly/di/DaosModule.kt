@@ -3,7 +3,9 @@ package net.androidweekly.di
 import dagger.Module
 import dagger.Provides
 import net.androidweekly.data.daos.issues.RemoteIssuesDao
+import net.androidweekly.data.daos.jobs.LocalJobsDao
 import net.androidweekly.data.daos.jobs.RemoteJobsDao
+import net.androidweekly.data.database.Database
 import retrofit2.Retrofit
 import javax.inject.Named
 
@@ -26,5 +28,11 @@ object DaosModule {
     @JvmStatic
     fun provideRemoteJobsDao(@Named(NetworkModule.HTML_RETROFIT) retrofit: Retrofit): RemoteJobsDao {
         return retrofit.create(RemoteJobsDao::class.java)
+    }
+
+    @Provides
+    @JvmStatic
+    fun provideLocalJobsDao(database: Database): LocalJobsDao {
+        return database.localJobsDao()
     }
 }

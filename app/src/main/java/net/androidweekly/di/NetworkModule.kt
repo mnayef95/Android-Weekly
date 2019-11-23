@@ -44,7 +44,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.ISSUES_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(SimpleXmlConverterFactory.create())
             .build()
@@ -56,7 +56,7 @@ object NetworkModule {
     @Singleton
     fun provideHtmlRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.JOBS_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(JspoonConverterFactory.create())
             .build()
