@@ -1,4 +1,6 @@
 # Android weekly application
+[![Build Status](https://travis-ci.org/mnayef95/Android-Weekly.svg?branch=master)](https://travis-ci.org/mnayef95/Android-Weekly)
+
 Android Weekly is a free newsletter that helps you to stay cutting-edge with your Android Development. The newsletter comes once a week and covers a broad range of topics like tutorials, screencasts, news... just everything that's awesome in the Android Development world!
 
 This project is built on top of multiple libraries and concepts.
