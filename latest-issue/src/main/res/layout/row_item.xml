@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="item"
             type="net.androidweekly.data.models.items.IssueItem" />
@@ -27,13 +29,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_row_issue_image"
+            <RelativeLayout
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_margin="5dp"
-                android:scaleType="fitXY"
-                tools:src="@tools:sample/backgrounds/scenic" />
+                android:layout_margin="5dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_row_issue_image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:scaleType="fitXY"
+                    app:radius="@{5}"
+                    app:roundedImageUrl="@{item.image}"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#4D000000"
+                    android:visibility="@{item.sponsored ? View.VISIBLE : View.GONE}" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:tint="@android:color/white"
+                    android:visibility="@{item.sponsored ? View.VISIBLE : View.GONE}"
+                    app:srcCompat="@drawable/ic_sponsored" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,15 +81,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:text="@{item.host}"
+                    android:textColor="#AAAAAA"
                     android:textSize="12sp"
                     tools:text="hackernoon.com" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:ellipsize="end"
-                    android:maxLines="3"
-                    android:textSize="12sp"
+                    android:maxLines="4"
+                    android:text="@{item.description}"
+                    android:textColor="#777777"
+                    android:textSize="13sp"
                     tools:text="James Ewen looks at five interesting stats based on data from the last year. Then he's going to attempt to understand what these trends show, how it will affect monetization, engagement and other app metrics. He’ll also look at how developers can adapt their app strategy to suit these trends." />
             </LinearLayout>
         </LinearLayout>

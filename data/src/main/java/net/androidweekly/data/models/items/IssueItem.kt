@@ -10,7 +10,17 @@ import net.androidweekly.data.R
  */
 data class IssueItem(
 
-    val title: String? = null
+    val title: String? = null,
+
+    val description: String? = null,
+
+    val image: String? = null,
+
+    val link: String? = null,
+
+    val host: String? = null,
+
+    val isSponsored: Boolean = false
 ) : Item {
 
     override val layoutResource: Int

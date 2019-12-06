@@ -1,3 +1,4 @@
+//noinspection GradleDependency
 android {
 
     configurations.all {
@@ -31,16 +32,16 @@ dependencies {
     implementation 'pl.droidsonroids.retrofit2:converter-jspoon:1.0.0'
 
     // For dependency injection
-    implementation "com.google.dagger:dagger:2.24"
-    implementation "com.google.dagger:dagger-android-support:2.24"
-    kapt "com.google.dagger:dagger-compiler:2.24"
-    kapt "com.google.dagger:dagger-android-processor:2.24"
+    implementation "com.google.dagger:dagger:2.25.2"
+    implementation "com.google.dagger:dagger-android-support:2.25.2"
+    kapt "com.google.dagger:dagger-compiler:2.25.2"
+    kapt "com.google.dagger:dagger-android-processor:2.25.2"
 
     // Android ViewModel architecture component
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc02"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-rc02"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc03"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-rc03"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc03"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc03"
 
     // For support kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
@@ -73,17 +74,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation "androidx.test.espresso:espresso-intents:3.2.0"
-    kaptAndroidTest "com.google.dagger:dagger-compiler:2.24"
-    kaptAndroidTest "com.google.dagger:dagger-android-processor:2.24"
 
     // For detect memory leaks
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'
-
-    // Replacement for the Java date and time classes
-    implementation 'net.danlew:android.joda:2.10.3'
-
-    // Paper is a fast NoSQL-like storage for Java/Kotlin objects on Android with automatic schema migration support.
-    implementation 'io.paperdb:paperdb:2.6'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0'
 
     // For use google chrome activity in our application
     implementation 'com.android.support:customtabs:28.0.0'

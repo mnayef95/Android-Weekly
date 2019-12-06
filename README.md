@@ -16,7 +16,7 @@ This project is built on top of multiple libraries and concepts.
 - AndroidX
 
 # Demo:
-<img src="images/screenshot3.png" data-canonical-src="images/screenshot3.png" width="32%" /> <img src="images/screenshot1.png" data-canonical-src="images/screenshot1.png" width="32%" /> <img src="images/screenshot2.png" data-canonical-src="images/screenshot2.png" width="32%" />
+<img src="images/screenshot1.png" width="32%" /> <img src="images/screenshot2.png" width="32%" /> <img src="images/screenshot3.png" width="32%" /> <img src="images/screenshot4.png" width="32%" /> <img src="images/screenshot5.png" width="32%" />
 
 
 # Contributing

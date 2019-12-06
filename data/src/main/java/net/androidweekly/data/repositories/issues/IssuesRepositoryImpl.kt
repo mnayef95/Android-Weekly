@@ -2,7 +2,7 @@ package net.androidweekly.data.repositories.issues
 
 import net.androidweekly.data.daos.issues.RemoteIssuesDao
 import net.androidweekly.data.models.issues.AuthenticityTokens
-import net.androidweekly.data.models.issues.IssueWrapper
+import net.androidweekly.data.models.issues.Issue
 
 /**
  * Project: Android Weekly
@@ -12,9 +12,12 @@ import net.androidweekly.data.models.issues.IssueWrapper
  */
 class IssuesRepositoryImpl(private val remoteIssuesDao: RemoteIssuesDao) : IssuesRepository {
 
-    override suspend fun getLatestIssue(): IssueWrapper {
-        val data = remoteIssuesDao.getAllIssues()
-        return IssueWrapper()
+    override suspend fun getLatestIssue(): Issue? {
+        return getPastIssues()?.first()
+    }
+
+    override suspend fun getPastIssues(): List<Issue>? {
+        return remoteIssuesDao.getAllIssues().channel?.items
     }
 
     override suspend fun getAuthenticityTokens(): AuthenticityTokens {

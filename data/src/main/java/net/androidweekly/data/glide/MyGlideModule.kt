@@ -9,6 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.RequestOptions
+import net.androidweekly.data.R
 
 /**
  * Project: Android Weekly
@@ -25,6 +26,7 @@ class MyGlideModule : AppGlideModule() {
             RequestOptions()
                 .format(DecodeFormat.PREFER_ARGB_8888)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .fallback(R.drawable.ic_no_image)
         )
         builder.setDefaultTransitionOptions(
             Drawable::class.java,

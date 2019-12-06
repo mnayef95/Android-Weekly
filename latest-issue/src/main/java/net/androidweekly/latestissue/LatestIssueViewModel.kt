@@ -1,12 +1,16 @@
 package net.androidweekly.latestissue
 
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import net.androidweekly.core.BaseViewModel
-import net.androidweekly.data.models.items.IssueItem
-import net.androidweekly.data.models.items.IssueTitle
+import net.androidweekly.data.CoroutinesContextProvider
+import net.androidweekly.data.models.issues.Issue
 import net.androidweekly.data.models.items.Item
+import net.androidweekly.data.network.Resource
+import net.androidweekly.data.network.tryResource
 import net.androidweekly.data.repositories.issues.IssuesRepository
 
 /**
@@ -16,19 +20,40 @@ import net.androidweekly.data.repositories.issues.IssuesRepository
  * @author Mohamed Hamdan
  */
 class LatestIssueViewModel(
-    private val issuesRepository: IssuesRepository
+    private val issuesRepository: IssuesRepository,
+    private val coroutinesContextProvider: CoroutinesContextProvider
 ) : BaseViewModel(), LifecycleObserver {
+
+    private val issuesResourceLiveData = MutableLiveData<Resource>()
 
     private val items: MutableList<Item> = mutableListOf()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun onCreate() {
-        items.addAll(
-            listOf(
-                IssueTitle(title = "Mohamed"),
-                IssueItem(title = "Mohamed")
-            )
-        )
+    fun getIssues(): LiveData<Resource> {
+        viewModelScope.launch(coroutinesContextProvider.io) {
+            showProgress()
+
+            val resource = tryResource { issuesRepository.getLatestIssue() }
+            resource.element<Issue>()?.let { items.addAll(it.getItems()) }
+
+            viewModelScope.launch(coroutinesContextProvider.main) {
+                issuesResourceLiveData.value = resource
+            }
+
+            hideProgress()
+        }
+        return issuesResourceLiveData
+    }
+
+    private fun showProgress() {
+        viewModelScope.launch(coroutinesContextProvider.main) {
+            issuesResourceLiveData.value = Resource.Loading(show = true)
+        }
+    }
+
+    private fun hideProgress() {
+        viewModelScope.launch(coroutinesContextProvider.main) {
+            issuesResourceLiveData.value = Resource.Loading(show = false)
+        }
     }
 
     fun getItemsCount(): Int {

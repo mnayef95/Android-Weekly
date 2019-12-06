@@ -16,15 +16,20 @@ import net.androidweekly.data.glide.GlideApp
 class BindingAdaptersImpl : BindingAdapters {
 
     override fun ImageView.setImageUrl(url: String?) {
-        GlideApp.with(this).load(url).into(this)
+        GlideApp.with(this).load(url).thumbnail(THUMBNAIL).into(this)
     }
 
     override fun ImageView.setCircleImageUrl(url: String?) {
-        GlideApp.with(this).load(url).apply(RequestOptions.circleCropTransform()).into(this)
+        GlideApp.with(this).load(url).thumbnail(THUMBNAIL).apply(RequestOptions.circleCropTransform()).into(this)
     }
 
     override fun ImageView.setRoundedImageUrl(url: String?, radius: Int) {
         val requestOptions = RequestOptions().transform(CenterCrop(), RoundedCorners(radius.dpToPx(context).toInt()))
-        GlideApp.with(this).load(url).apply(requestOptions).into(this)
+        GlideApp.with(this).load(url).thumbnail(THUMBNAIL).apply(requestOptions).into(this)
+    }
+
+    private companion object {
+
+        private const val THUMBNAIL = 0.1f
     }
 }

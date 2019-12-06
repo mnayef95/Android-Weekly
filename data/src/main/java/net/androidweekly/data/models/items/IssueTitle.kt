@@ -1,6 +1,7 @@
 package net.androidweekly.data.models.items
 
 import net.androidweekly.data.R
+import pl.droidsonroids.jspoon.annotation.Selector
 
 /**
  * Project: Android Weekly
@@ -10,6 +11,7 @@ import net.androidweekly.data.R
  */
 data class IssueTitle(
 
+    @Selector("div table h2")
     val title: String? = null
 ) : Item {
 

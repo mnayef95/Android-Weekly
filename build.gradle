@@ -78,15 +78,13 @@ subprojects {
         }
 
         defaultConfig {
-            if (project.name == "app") {
-                applicationId "net.androidweekly"
-            }
-
             minSdkVersion 21
             targetSdkVersion 29
 
             versionCode Integer.parseInt(getProperty("app.versionCode"))
             versionName getProperty("app.versionName")
+
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         }
 
         buildTypes {
@@ -106,17 +104,9 @@ subprojects {
         productFlavors {
 
             development {
-                if (project.name == "app") {
-                    versionNameSuffix = "-development"
-                    applicationIdSuffix = ".development"
-                }
             }
 
             staging {
-                if (project.name == "app") {
-                    versionNameSuffix = "-staging"
-                    applicationIdSuffix = ".staging"
-                }
             }
 
             production {}

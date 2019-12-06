@@ -8,8 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import io.paperdb.Book
-import io.paperdb.Paper
 import net.androidweekly.data.CoroutinesContextProvider
 import net.androidweekly.data.CoroutinesContextProviderImpl
 import net.androidweekly.data.binding.BindingAdapters
@@ -33,60 +31,46 @@ object CommonModule {
     private const val DATABASE_NAME = "androidweekly"
 
     // This injection is a workaround for a known issue in Gradle build system https://github.com/google/dagger/issues/955
-    @JvmStatic
-    @Singleton
     @Provides
+    @Singleton
     fun provideDummyObject(): String {
         return ""
     }
 
-    @JvmStatic
-    @Singleton
     @Provides
+    @Singleton
     fun provideContextProvider(): CoroutinesContextProvider {
         return CoroutinesContextProviderImpl()
     }
 
-    @JvmStatic
-    @Singleton
     @Provides
-    fun provideBook(): Book {
-        return Paper.book()
-    }
-
-    @JvmStatic
     @Singleton
-    @Provides
     fun provideSharedPreferences(context: Application): SharedPreferences {
         return context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
 
-    @JvmStatic
-    @Singleton
     @Provides
+    @Singleton
     fun providePrefs(sharedPreferences: SharedPreferences): Prefs {
         return PrefsImpl(sharedPreferences)
     }
 
-    @JvmStatic
-    @Singleton
     @Provides
+    @Singleton
     fun provideBindingAdapters(): BindingAdapters {
         return BindingAdaptersImpl()
     }
 
-    @JvmStatic
-    @Singleton
     @Provides
+    @Singleton
     fun provideCustomTabsIntent(context: Application): CustomTabsIntent {
         return CustomTabsIntent.Builder()
             .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
             .build()
     }
 
-    @JvmStatic
-    @Singleton
     @Provides
+    @Singleton
     fun provideDatabase(context: Application): Database {
         return Room.databaseBuilder(context, Database::class.java, DATABASE_NAME).build()
     }
