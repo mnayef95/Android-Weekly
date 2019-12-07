@@ -22,7 +22,7 @@ This project is built on top of multiple libraries and concepts.
 # Contributing
 If you'd like to contribute, please take a look at the issue tracker, For new features, please open an issue to discuss it before beginning implementation.
 
-Use AndroidWeeklyCodeStyle.xml for Android Studio code styles. Check this link for more information about how you can import code style in Android Studio.
+Use AndroidWeeklyCodeStyle.xml for Android Studio code styles. Check this [link](https://stackoverflow.com/a/30454168/8191360) for more information about how you can import code style in Android Studio.
 
 Please set your Android studio kotlin code style based on Kotlin Coding Conventions. Check this link for more information about Kotlin Coding Conventions in Android Studio.
 
