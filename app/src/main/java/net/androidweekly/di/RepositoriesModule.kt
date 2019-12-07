@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import net.androidweekly.core.qualifiers.Html
 import net.androidweekly.core.qualifiers.Xml
+import net.androidweekly.data.daos.issues.LocalIssuesDao
 import net.androidweekly.data.daos.issues.RemoteIssuesDao
 import net.androidweekly.data.daos.jobs.LocalJobsDao
 import net.androidweekly.data.daos.jobs.RemoteJobsDao
@@ -25,15 +26,21 @@ class RepositoriesModule {
     @Xml
     @Provides
     @Singleton
-    fun provideIssuesRepository(@Xml remoteIssuesDao: RemoteIssuesDao): IssuesRepository {
-        return IssuesRepositoryImpl(remoteIssuesDao)
+    fun provideIssuesRepository(
+        @Xml remoteIssuesDao: RemoteIssuesDao,
+        localIssuesDao: LocalIssuesDao
+    ): IssuesRepository {
+        return IssuesRepositoryImpl(remoteIssuesDao, localIssuesDao)
     }
 
     @Html
     @Provides
     @Singleton
-    fun provideHtmlIssuesRepository(@Html remoteIssuesDao: RemoteIssuesDao): IssuesRepository {
-        return IssuesRepositoryImpl(remoteIssuesDao)
+    fun provideHtmlIssuesRepository(
+        @Html remoteIssuesDao: RemoteIssuesDao,
+        localIssuesDao: LocalIssuesDao
+    ): IssuesRepository {
+        return IssuesRepositoryImpl(remoteIssuesDao, localIssuesDao)
     }
 
     @Provides

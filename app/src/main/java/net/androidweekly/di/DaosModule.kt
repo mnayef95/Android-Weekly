@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import net.androidweekly.core.qualifiers.Html
 import net.androidweekly.core.qualifiers.Xml
+import net.androidweekly.data.daos.issues.LocalIssuesDao
 import net.androidweekly.data.daos.issues.RemoteIssuesDao
 import net.androidweekly.data.daos.jobs.LocalJobsDao
 import net.androidweekly.data.daos.jobs.RemoteJobsDao
@@ -44,5 +45,11 @@ object DaosModule {
     @Singleton
     fun provideLocalJobsDao(database: Database): LocalJobsDao {
         return database.localJobsDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocalIssuesDao(database: Database): LocalIssuesDao {
+        return database.localIssuesDao()
     }
 }

@@ -11,7 +11,9 @@ import net.androidweekly.data.models.issues.Issue
  */
 interface IssuesRepository {
 
-    suspend fun getLatestIssue(): Issue?
+    suspend fun getRemoteLatestIssue(): Issue?
+
+    suspend fun getLocalLatestIssues(): Issue?
 
     suspend fun getPastIssues(): List<Issue>?
 

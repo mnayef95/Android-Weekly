@@ -12,6 +12,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -66,14 +67,14 @@ class MainActivity : BaseToolbarActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         initNavigation()
-        initDrawerLayout()
         initListeners()
     }
 
     private fun initNavigation() {
-        bottomNavigationView?.setupWithNavController(navController)
-        toolbar?.setupWithNavController(navController, drawerLayoutRoot)
+        navigationView?.setupWithNavController(navController)
+        setupActionBarWithNavController(navController, drawerLayoutRoot)
         toolbar?.setNavigationOnClickListener { onSupportNavigateUp() }
+        bottomNavigationView?.setupWithNavController(navController)
     }
 
     private fun initDrawerLayout() {
@@ -177,7 +178,9 @@ class MainActivity : BaseToolbarActivity() {
         if (drawerLayoutRoot?.isDrawerOpen(GravityCompat.START) == true) {
             drawerLayoutRoot?.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            if (!navController.popBackStack()) {
+                super.onBackPressed()
+            }
         }
     }
 

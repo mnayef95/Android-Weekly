@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "44dcb2311c8f26a89a525b6e622aee64",
+    "identityHash": "12675e2bb72c0916faf945905a0bdc56",
     "entities": [
       {
         "tableName": "jobs",
@@ -41,12 +41,50 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "issues",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`title` TEXT, `link` TEXT NOT NULL, `description` TEXT, `publishDate` TEXT, PRIMARY KEY(`link`))",
+        "fields": [
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "link",
+            "columnName": "link",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "publishDate",
+            "columnName": "publishDate",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "link"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '44dcb2311c8f26a89a525b6e622aee64')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '12675e2bb72c0916faf945905a0bdc56')"
     ]
   }
 }

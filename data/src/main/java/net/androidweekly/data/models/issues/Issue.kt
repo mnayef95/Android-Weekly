@@ -1,6 +1,9 @@
 package net.androidweekly.data.models.issues
 
 import android.net.Uri
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import net.androidweekly.data.models.items.IssueItem
 import net.androidweekly.data.models.items.IssueTitle
 import net.androidweekly.data.models.items.Item
@@ -16,14 +19,16 @@ import org.simpleframework.xml.Root
  *
  * @author Mohamed Hamdan
  */
+@Entity(tableName = "issues")
 @Root(name = "item", strict = false)
 data class Issue(
 
     @field:Element(name = "title", required = false)
     var title: String? = null,
 
+    @PrimaryKey
     @field:Element(name = "link", required = false)
-    var link: String? = null,
+    var link: String = "",
 
     @field:Element(name = "description", required = false)
     var description: String? = null,
@@ -32,7 +37,10 @@ data class Issue(
     var publishDate: String? = null
 ) {
 
+    @Ignore
     private var isNextItemSponsored = false
+
+    @Ignore
     private val allItems = mutableListOf<Item>()
 
     fun getItems(): List<Item> {

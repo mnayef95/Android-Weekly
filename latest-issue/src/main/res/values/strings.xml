@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message_fragment_latest_issues_local_issues">There was a problem getting an issues from remote source, all issues in this page are from local source.</string>
+</resources>

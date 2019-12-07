@@ -1,5 +1,6 @@
 package net.androidweekly.data.models.items
 
+import kotlinx.android.parcel.Parcelize
 import net.androidweekly.data.R
 
 /**
@@ -8,6 +9,7 @@ import net.androidweekly.data.R
  *
  * @author Mohamed Hamdan
  */
+@Parcelize
 data class IssueItem(
 
     val title: String? = null,
