@@ -133,9 +133,13 @@ class LatestIssueFragment : BaseFragment() {
         super.onDestroyView()
         recyclerView?.adapter = null
         recyclerView = null
+        errorView?.setOnRetryClickListener(null)
         errorView = null
         progressBar = null
         adapter = null
+        constraintLayoutParent = null
+        buttonLocalIssuesRetry = null
+        cardViewLocalIssuesMessage = null
     }
 
     private companion object {
