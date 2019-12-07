@@ -1,4 +1,3 @@
-//noinspection GradleDependency
 android {
 
     configurations.all {
