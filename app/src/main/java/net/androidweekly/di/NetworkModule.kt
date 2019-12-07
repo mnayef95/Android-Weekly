@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package net.androidweekly.di
 
 import dagger.Module
@@ -24,7 +26,6 @@ object NetworkModule {
 
     private const val TIMEOUT_MINUTES = 1L
 
-    @JvmStatic
     @Provides
     @Singleton
     fun provideOkHttp(): OkHttpClient {
@@ -38,8 +39,8 @@ object NetworkModule {
             .build()
     }
 
+    @Suppress("DEPRECATION")
     @Xml
-    @JvmStatic
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -51,7 +52,6 @@ object NetworkModule {
     }
 
     @Html
-    @JvmStatic
     @Provides
     @Singleton
     fun provideHtmlRetrofit(okHttpClient: OkHttpClient): Retrofit {

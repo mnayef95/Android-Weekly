@@ -19,7 +19,7 @@ class LatestIssuesAdapter(private val viewModel: LatestIssueViewModel) : BaseAda
     }
 
     override fun getItemViewType(position: Int): Int {
-        return viewModel.getItem(position).layoutResource
+        return viewModel.getItem(position)?.layoutResource ?: R.layout.row_item
     }
 
     override fun getItemCount(): Int {

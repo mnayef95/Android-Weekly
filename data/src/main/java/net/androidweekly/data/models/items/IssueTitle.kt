@@ -1,6 +1,8 @@
 package net.androidweekly.data.models.items
 
+import kotlinx.android.parcel.Parcelize
 import net.androidweekly.data.R
+import pl.droidsonroids.jspoon.annotation.Selector
 
 /**
  * Project: Android Weekly
@@ -8,8 +10,10 @@ import net.androidweekly.data.R
  *
  * @author Mohamed Hamdan
  */
+@Parcelize
 data class IssueTitle(
 
+    @Selector("div table h2")
     val title: String? = null
 ) : Item {
 

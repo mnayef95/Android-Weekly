@@ -1,7 +1,7 @@
 package net.androidweekly.data.repositories.issues
 
 import net.androidweekly.data.models.issues.AuthenticityTokens
-import net.androidweekly.data.models.issues.IssueWrapper
+import net.androidweekly.data.models.issues.Issue
 
 /**
  * Project: Android Weekly
@@ -11,7 +11,11 @@ import net.androidweekly.data.models.issues.IssueWrapper
  */
 interface IssuesRepository {
 
-    suspend fun getLatestIssue(): IssueWrapper
+    suspend fun getRemoteLatestIssue(): Issue?
+
+    suspend fun getLocalLatestIssues(): Issue?
+
+    suspend fun getPastIssues(): List<Issue>?
 
     suspend fun getAuthenticityTokens(): AuthenticityTokens
 

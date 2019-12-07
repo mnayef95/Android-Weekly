@@ -10,6 +10,20 @@
         android:label="@string/title_menu_activity_main_navigation_view_latest_issue" />
 
     <fragment
+        android:id="@+id/fragment_section_details"
+        android:name="net.androidweekly.latestissue.LatestIssueFragment"
+        android:label="{title}">
+
+        <argument
+            android:name="title"
+            app:argType="string" />
+
+        <argument
+            android:name="items"
+            app:argType="net.androidweekly.data.models.items.Item[]" />
+    </fragment>
+
+    <fragment
         android:id="@+id/item_menu_activity_main_advertise"
         android:name="net.androidweekly.latestissue.LatestIssueFragment" />
 

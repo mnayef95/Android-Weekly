@@ -21,6 +21,8 @@ fun Fragment.intentTo(addressableActivity: AddressableActivity): Intent {
 interface AddressableActivity {
 
     val action: String
+
+    val className: String
 }
 
 object Activities {
@@ -29,5 +31,6 @@ object Activities {
 
         override val action: String = "net.androidweekly.main.MainActivity"
 
+        override val className: String = "net.androidweekly.main.MainActivity"
     }
 }

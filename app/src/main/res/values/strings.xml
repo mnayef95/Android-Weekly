@@ -2,4 +2,6 @@
 <resources>
 
     <string name="app_name">Android Weekly</string>
+
+    <string name="leak_canary_display_activity_label">Android Weekly Leaks</string>
 </resources>

@@ -1,3 +1,23 @@
+android {
+
+    defaultConfig {
+        applicationId "net.androidweekly"
+    }
+
+    productFlavors {
+
+        development {
+            versionNameSuffix = "-development"
+            applicationIdSuffix = ".development"
+        }
+
+        staging {
+            versionNameSuffix = "-staging"
+            applicationIdSuffix = ".staging"
+        }
+    }
+}
+
 dependencies {
     implementation "androidx.room:room-runtime:2.2.2"
     implementation project(':core')
