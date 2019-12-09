@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.transition.TransitionManager
 import net.androidweekly.core.custom.views.ErrorView
 import net.androidweekly.core.fragments.BaseFragment
@@ -40,6 +41,7 @@ class LatestIssueFragment : BaseFragment() {
     private var constraintLayoutParent: ConstraintLayout? = null
     private var buttonLocalIssuesRetry: Button? = null
     private var adapter: LatestIssuesAdapter? = null
+    private var swipeRefreshLayout: SwipeRefreshLayout? = null
 
     override val layoutId: Int = R.layout.fragment_latest_issue
 
@@ -59,9 +61,13 @@ class LatestIssueFragment : BaseFragment() {
         recyclerView = view?.findViewById(R.id.recycler_view_fragment_latest_issue)
         errorView = view?.findViewById(R.id.error_view_fragment_latest_issues)
         progressBar = view?.findViewById(R.id.progress_bar_fragment_latest_issues)
-        cardViewLocalIssuesMessage = view?.findViewById(R.id.card_view_fragment_latest_issues_local_issues_message)
-        constraintLayoutParent = view?.findViewById(R.id.constraint_layout_fragment_latest_issues_parent)
-        buttonLocalIssuesRetry = view?.findViewById(R.id.button_fragment_latest_issues_local_issues_retry)
+        cardViewLocalIssuesMessage =
+            view?.findViewById(R.id.card_view_fragment_latest_issues_local_issues_message)
+        constraintLayoutParent =
+            view?.findViewById(R.id.constraint_layout_fragment_latest_issues_parent)
+        buttonLocalIssuesRetry =
+            view?.findViewById(R.id.button_fragment_latest_issues_local_issues_retry)
+        swipeRefreshLayout = view?.findViewById(R.id.swipeRefreshLayout)
     }
 
     private fun initListeners() {
@@ -80,6 +86,11 @@ class LatestIssueFragment : BaseFragment() {
             cardViewLocalIssuesMessage?.visibility = View.GONE
             getIssues()
             adapter?.notifyDataSetChanged()
+        }
+
+        swipeRefreshLayout?.setOnRefreshListener {
+            getIssues()
+            swipeRefreshLayout?.isRefreshing = false
         }
     }
 
