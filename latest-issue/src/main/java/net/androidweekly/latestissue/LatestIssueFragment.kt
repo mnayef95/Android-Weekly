@@ -42,6 +42,7 @@ class LatestIssueFragment : BaseFragment() {
     private var buttonLocalIssuesRetry: Button? = null
     private var adapter: LatestIssuesAdapter? = null
     private var swipeRefreshLayout: SwipeRefreshLayout? = null
+    private var isSwiped: Boolean = false
 
     override val layoutId: Int = R.layout.fragment_latest_issue
 
@@ -67,7 +68,8 @@ class LatestIssueFragment : BaseFragment() {
             view?.findViewById(R.id.constraint_layout_fragment_latest_issues_parent)
         buttonLocalIssuesRetry =
             view?.findViewById(R.id.button_fragment_latest_issues_local_issues_retry)
-        swipeRefreshLayout = view?.findViewById(R.id.swipeRefreshLayout)
+        swipeRefreshLayout =
+            view?.findViewById(R.id.swipeRefreshLayout)
     }
 
     private fun initListeners() {
@@ -90,7 +92,7 @@ class LatestIssueFragment : BaseFragment() {
 
         swipeRefreshLayout?.setOnRefreshListener {
             getIssues()
-            swipeRefreshLayout?.isRefreshing = false
+            isSwiped = true
         }
     }
 
@@ -109,7 +111,8 @@ class LatestIssueFragment : BaseFragment() {
     }
 
     private fun handleLoadingResource(resource: Resource.Loading) {
-        progressBar?.visibility = if (resource.show) View.VISIBLE else View.GONE
+        progressBar?.visibility = if (resource.show && !isSwiped) View.VISIBLE else View.GONE
+        swipeRefreshLayout?.isRefreshing = resource.show && isSwiped
     }
 
     private fun handleSuccessResource() {
