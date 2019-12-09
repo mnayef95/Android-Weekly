@@ -1,9 +1,11 @@
 package net.androidweekly.data.models.issues
 
 import android.net.Uri
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 import net.androidweekly.data.models.items.IssueItem
 import net.androidweekly.data.models.items.IssueTitle
 import net.androidweekly.data.models.items.Item
@@ -11,6 +13,8 @@ import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -19,6 +23,7 @@ import org.simpleframework.xml.Root
  *
  * @author Mohamed Hamdan
  */
+@Parcelize
 @Entity(tableName = "issues")
 @Root(name = "item", strict = false)
 data class Issue(
@@ -35,7 +40,7 @@ data class Issue(
 
     @field:Element(name = "pubDate", required = false)
     var publishDate: String? = null
-) {
+) : Parcelable {
 
     @Ignore
     private var isNextItemSponsored = false
@@ -107,5 +112,23 @@ data class Issue(
             )
         )
         isNextItemSponsored = false
+    }
+
+    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+    fun getFormattedDate(): String? {
+        return try {
+            val pattern = "E, dd MMM yyyy HH:mm:ss Z"
+            val formattedPattern = "E, dd MMM yyyy"
+
+            val simpleDateFormat = SimpleDateFormat(pattern, Locale.ENGLISH)
+            val formattedSimpleDateFormat = SimpleDateFormat(formattedPattern, Locale.ENGLISH)
+
+            val date: String = simpleDateFormat.format(simpleDateFormat.parse(publishDate))
+            val formattedDate: String = formattedSimpleDateFormat.format(simpleDateFormat.parse(date))
+
+            formattedDate
+        } catch (e: Exception) {
+            publishDate
+        }
     }
 }

@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraint_layout_fragment_latest_issues_parent"
+    android:id="@+id/constraint_layout_fragment_past_issues_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_fragment_latest_issues_local_issues_message"
+        android:id="@+id/card_view_fragment_past_issues_local_issues_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -26,12 +26,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="@string/message_fragment_latest_issues_local_issues"
+                android:text="@string/message_fragment_past_issues_local_issues"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_fragment_latest_issues_local_issues_retry"
+                android:id="@+id/button_fragment_past_issues_local_issues_retry"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_fragment_latest_issue"
+            android:id="@+id/recycler_view_fragment_past_issue"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
@@ -63,11 +63,11 @@
             app:layout_constraintEnd_toEndOf="@id/swipeRefreshLayout"
             app:layout_constraintStart_toStartOf="@id/swipeRefreshLayout"
             app:layout_constraintTop_toBottomOf="@+id/swipeRefreshLayout"
-            tools:listitem="@layout/row_item" />
+            tools:listitem="@layout/row_past_issue" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <net.androidweekly.core.custom.views.ErrorView
-        android:id="@+id/error_view_fragment_latest_issues"
+        android:id="@+id/error_view_fragment_past_issues"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progress_bar_fragment_latest_issues"
+        android:id="@+id/progress_bar_fragment_past_issues"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_centerInParent="true"

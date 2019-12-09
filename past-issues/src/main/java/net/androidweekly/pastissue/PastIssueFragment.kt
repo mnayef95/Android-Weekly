@@ -1,11 +1,10 @@
-package net.androidweekly.latestissue
+package net.androidweekly.pastissue
 
-import android.net.Uri
+
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
@@ -15,24 +14,16 @@ import androidx.transition.TransitionManager
 import net.androidweekly.core.custom.views.ErrorView
 import net.androidweekly.core.fragments.BaseFragment
 import net.androidweekly.core.utils.android.observe
-import net.androidweekly.data.models.items.IssueItem
-import net.androidweekly.data.models.items.IssueTitle
 import net.androidweekly.data.network.Resource
 import javax.inject.Inject
 
-/**
- * Project: Android Weekly
- * Created: Oct 21, 2019
- *
- * @author Mohamed Hamdan
- */
-class LatestIssueFragment : BaseFragment() {
+class PastIssueFragment : BaseFragment() {
 
     @Inject
-    lateinit var viewModel: LatestIssueViewModel
+    lateinit var viewModel: PastIssueViewModel
 
-    @Inject
-    lateinit var customTabsIntent: CustomTabsIntent
+    override val layoutId: Int
+        get() = R.layout.fragment_past_issue
 
     private var recyclerView: RecyclerView? = null
     private var errorView: ErrorView? = null
@@ -40,43 +31,34 @@ class LatestIssueFragment : BaseFragment() {
     private var cardViewLocalIssuesMessage: CardView? = null
     private var constraintLayoutParent: ConstraintLayout? = null
     private var buttonLocalIssuesRetry: Button? = null
-    private var adapter: LatestIssuesAdapter? = null
+    private var adapter: PastIssuesAdapter? = null
     private var swipeRefreshLayout: SwipeRefreshLayout? = null
     private var isSwiped: Boolean = false
-
-    override val layoutId: Int = R.layout.fragment_latest_issue
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
         initListeners()
-        if (arguments?.containsKey(ARG_ITEMS) == true) {
-            viewModel.setItems(arguments?.getParcelableArray(ARG_ITEMS))
-
-            // TODO - Should change toolbar title with item title.
-
-        } else {
-            getIssues()
-        }
+        getPastIssues()
     }
 
     private fun initViews() {
-        recyclerView = view?.findViewById(R.id.recycler_view_fragment_latest_issue)
-        errorView = view?.findViewById(R.id.error_view_fragment_latest_issues)
-        progressBar = view?.findViewById(R.id.progress_bar_fragment_latest_issues)
+        recyclerView = view?.findViewById(R.id.recycler_view_fragment_past_issue)
+        errorView = view?.findViewById(R.id.error_view_fragment_past_issues)
+        progressBar = view?.findViewById(R.id.progress_bar_fragment_past_issues)
         cardViewLocalIssuesMessage =
-            view?.findViewById(R.id.card_view_fragment_latest_issues_local_issues_message)
+            view?.findViewById(R.id.card_view_fragment_past_issues_local_issues_message)
         constraintLayoutParent =
-            view?.findViewById(R.id.constraint_layout_fragment_latest_issues_parent)
+            view?.findViewById(R.id.constraint_layout_fragment_past_issues_parent)
         buttonLocalIssuesRetry =
-            view?.findViewById(R.id.button_fragment_latest_issues_local_issues_retry)
+            view?.findViewById(R.id.button_fragment_past_issues_local_issues_retry)
         swipeRefreshLayout =
             view?.findViewById(R.id.swipeRefreshLayout)
     }
 
     private fun initListeners() {
-        errorView?.setOnRetryClickListener { getIssues() }
+        errorView?.setOnRetryClickListener { getPastIssues() }
 
         viewModel.issuesResourceLiveData.observe(this, this::handleResource)
 
@@ -89,12 +71,12 @@ class LatestIssueFragment : BaseFragment() {
         buttonLocalIssuesRetry?.setOnClickListener {
             TransitionManager.beginDelayedTransition(constraintLayoutParent!!)
             cardViewLocalIssuesMessage?.visibility = View.GONE
-            getIssues()
+            getPastIssues()
             adapter?.notifyDataSetChanged()
         }
 
         swipeRefreshLayout?.setOnRefreshListener {
-            getIssues()
+            getPastIssues()
             isSwiped = true
         }
     }
@@ -123,17 +105,15 @@ class LatestIssueFragment : BaseFragment() {
     }
 
     private fun initAdapter() {
-        adapter = LatestIssuesAdapter(viewModel)
+        adapter = PastIssuesAdapter(viewModel)
         adapter?.setOnItemClickListener { _, position ->
+
             val item = viewModel.getItem(position)
-            if (item is IssueItem) {
-                customTabsIntent.launchUrl(context, Uri.parse(item.link))
-            } else if (item is IssueTitle) {
-                val args = Bundle()
-                args.putParcelableArray(ARG_ITEMS, viewModel.getClickedSectionItems(position))
-                args.putString(ARG_TITLE, item.title)
-                findNavController().navigate(R.id.fragment_section_details, args)
-            }
+            val args = Bundle()
+
+            args.putParcelableArray(ARG_ITEMS, item?.getItems()?.toTypedArray())
+            args.putString(ARG_TITLE, item?.title)
+            findNavController().navigate(R.id.item_menu_activity_main_latest_issue, args)
         }
         recyclerView?.adapter = adapter
     }
@@ -142,8 +122,8 @@ class LatestIssueFragment : BaseFragment() {
         errorView?.setError(resource)
     }
 
-    private fun getIssues() {
-        viewModel.getIssues()
+    private fun getPastIssues() {
+        viewModel.getPastIssues()
     }
 
     override fun onDestroyView() {

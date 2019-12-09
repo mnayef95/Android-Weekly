@@ -8,7 +8,10 @@ import android.os.Parcelable
  *
  * @author Mohamed Hamdan
  */
+
 interface Item : Parcelable {
 
     val layoutResource: Int
+
+
 }
