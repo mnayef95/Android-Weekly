@@ -3,4 +3,5 @@ dependencies {
     api project(':latest-issue')
     api project(':jobs')
     api project(':submit')
+    api project(':past-issue')
 }

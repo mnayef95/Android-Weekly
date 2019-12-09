@@ -15,7 +15,9 @@ interface IssuesRepository {
 
     suspend fun getLocalLatestIssues(): Issue?
 
-    suspend fun getPastIssues(): List<Issue>?
+    suspend fun getRemotePastIssues(): List<Issue>?
+
+    suspend fun getLocalPastIssues(): List<Issue>?
 
     suspend fun getAuthenticityTokens(): AuthenticityTokens
 

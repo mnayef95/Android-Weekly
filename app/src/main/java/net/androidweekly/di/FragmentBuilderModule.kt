@@ -6,6 +6,8 @@ import net.androidweekly.jobs.JobsFragment
 import net.androidweekly.jobs.JobsFragmentModule
 import net.androidweekly.latestissue.LatestIssueFragment
 import net.androidweekly.latestissue.LatestIssueFragmentModule
+import net.androidweekly.pastissue.PastIssueFragment
+import net.androidweekly.pastissue.PastIssueFragmentModule
 
 /**
  * Project: Android Weekly
@@ -21,4 +23,7 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [JobsFragmentModule::class])
     abstract fun bindJobsFragment(): JobsFragment
+
+    @ContributesAndroidInjector(modules = [PastIssueFragmentModule::class])
+    abstract fun bindPastIssueFragment(): PastIssueFragment
 }

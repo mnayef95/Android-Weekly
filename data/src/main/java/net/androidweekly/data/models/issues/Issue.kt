@@ -1,9 +1,11 @@
 package net.androidweekly.data.models.issues
 
 import android.net.Uri
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 import net.androidweekly.data.models.items.IssueItem
 import net.androidweekly.data.models.items.IssueTitle
 import net.androidweekly.data.models.items.Item
@@ -19,6 +21,7 @@ import org.simpleframework.xml.Root
  *
  * @author Mohamed Hamdan
  */
+@Parcelize
 @Entity(tableName = "issues")
 @Root(name = "item", strict = false)
 data class Issue(
@@ -35,7 +38,7 @@ data class Issue(
 
     @field:Element(name = "pubDate", required = false)
     var publishDate: String? = null
-) {
+) : Parcelable {
 
     @Ignore
     private var isNextItemSponsored = false
@@ -107,5 +110,16 @@ data class Issue(
             )
         )
         isNextItemSponsored = false
+    }
+
+    fun getFormattedDate(): String? {
+
+        // TODO - Maybe a better solution can be found.
+
+        val length = publishDate?.length
+        return if (length != null) {
+            publishDate?.removeRange(length.minus(14), length)
+        } else
+            publishDate
     }
 }

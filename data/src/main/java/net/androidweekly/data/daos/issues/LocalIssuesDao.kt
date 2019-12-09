@@ -20,4 +20,7 @@ interface LocalIssuesDao {
 
     @Query("SELECT * FROM issues LIMIT 1")
     suspend fun getLatestIssues(): Issue?
+
+    @Query("SELECT * FROM issues")
+    suspend fun getPastIssues(): List<Issue>?
 }
