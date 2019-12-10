@@ -53,7 +53,6 @@ class LatestIssueFragment : BaseFragment() {
         initListeners()
         if (arguments?.containsKey(ARG_ITEMS) == true) {
             viewModel.setItems(arguments?.getParcelableArray(ARG_ITEMS))
-
             // TODO - Should change toolbar title with item title.
 
         } else {
@@ -136,6 +135,7 @@ class LatestIssueFragment : BaseFragment() {
             }
         }
         recyclerView?.adapter = adapter
+        recyclerView?.adapter?.notifyDataSetChanged()
     }
 
     private fun handleErrorResource(resource: Resource.Error) {

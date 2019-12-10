@@ -28,6 +28,7 @@
         android:name="net.androidweekly.latestissue.LatestIssueFragment"
         android:label="@string/title_menu_activity_main_navigation_view_advertise" />
 
+
     <fragment
         android:id="@+id/item_menu_activity_main_jobs"
         android:name="net.androidweekly.jobs.JobsFragment"
@@ -37,4 +38,5 @@
         android:id="@+id/item_menu_activity_past_issues"
         android:name="net.androidweekly.pastissue.PastIssueFragment"
         android:label="@string/title_menu_activity_main_navigation_view_past_issues" />
+
 </navigation>
