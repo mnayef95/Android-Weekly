@@ -29,12 +29,11 @@ class PastIssuesAdapter(private val viewModel: PastIssueViewModel) :
         return viewModel.getItemsCount()
     }
 
-    private inner class ViewHolder(private val binding: ViewDataBinding) :
+    private inner class ViewHolder(binding: ViewDataBinding) :
         BaseBindingViewHolder(binding) {
 
         override fun bind(position: Int) {
-            val item = viewModel.getItem(position)
-            binding.setVariable(BR.item, item)
+            bind<RowPastIssueBinding> { item = viewModel.getItem(position) }
         }
     }
 }
