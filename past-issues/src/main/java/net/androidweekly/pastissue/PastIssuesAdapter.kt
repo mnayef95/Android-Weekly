@@ -2,7 +2,6 @@ package net.androidweekly.pastissue
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import net.androidweekly.core.adapter.BaseAdapter
 import net.androidweekly.core.adapter.BaseBindingViewHolder
@@ -17,12 +16,12 @@ class PastIssuesAdapter(private val viewModel: PastIssueViewModel) :
 
     override fun getViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder {
         return ViewHolder(
-            DataBindingUtil.inflate<RowPastIssueBinding>(
-                LayoutInflater.from(parent.context),
-                R.layout.row_past_issue,
-                parent,
-                false
-            )
+            RowPastIssueBinding
+                .inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
         )
     }
 
@@ -35,8 +34,7 @@ class PastIssuesAdapter(private val viewModel: PastIssueViewModel) :
 
         override fun bind(position: Int) {
             val item = viewModel.getItem(position)
-            (binding as RowPastIssueBinding).item = item
-            binding.executePendingBindings()
+            binding.setVariable(BR.item, item)
         }
     }
 }

@@ -46,10 +46,11 @@
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/card_view_fragment_latest_issues_local_issues_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_fragment_latest_issue"
@@ -59,10 +60,10 @@
             android:orientation="vertical"
             android:paddingBottom="80dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="@id/swipeRefreshLayout"
-            app:layout_constraintEnd_toEndOf="@id/swipeRefreshLayout"
-            app:layout_constraintStart_toStartOf="@id/swipeRefreshLayout"
-            app:layout_constraintTop_toBottomOf="@+id/swipeRefreshLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
             tools:listitem="@layout/row_item" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
