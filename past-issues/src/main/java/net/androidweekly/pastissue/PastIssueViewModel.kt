@@ -30,7 +30,8 @@ class PastIssueViewModel(private val issuesRepository: IssuesRepository) : BaseV
         viewModelScope.launch(Dispatchers.IO) {
             showProgress()
             val resource = tryResource { issuesRepository.getRemotePastIssues() }
-            items = resource.element<List<Issue>>()
+            val items = resource.element<List<Issue>>()
+            this@PastIssueViewModel.items = items?.subList(1, items.size)
 
             handleLocalJobs(resource)
             handleResult(resource)

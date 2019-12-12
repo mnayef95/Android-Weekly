@@ -14,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.transition.TransitionManager
 import net.androidweekly.core.custom.views.ErrorView
 import net.androidweekly.core.fragments.BaseFragment
+import net.androidweekly.core.utils.android.fadeAnimationNavOptions
 import net.androidweekly.core.utils.android.observe
 import net.androidweekly.data.models.items.IssueItem
 import net.androidweekly.data.models.items.IssueTitle
@@ -53,8 +54,6 @@ class LatestIssueFragment : BaseFragment() {
         initListeners()
         if (arguments?.containsKey(ARG_ITEMS) == true) {
             viewModel.setItems(arguments?.getParcelableArray(ARG_ITEMS))
-            // TODO - Should change toolbar title with item title.
-
         } else {
             getIssues()
         }
@@ -131,7 +130,7 @@ class LatestIssueFragment : BaseFragment() {
                 val args = Bundle()
                 args.putParcelableArray(ARG_ITEMS, viewModel.getClickedSectionItems(position))
                 args.putString(ARG_TITLE, item.title)
-                findNavController().navigate(R.id.fragment_section_details, args)
+                findNavController().navigate(R.id.fragment_section_details, args, fadeAnimationNavOptions())
             }
         }
         recyclerView?.adapter = adapter
