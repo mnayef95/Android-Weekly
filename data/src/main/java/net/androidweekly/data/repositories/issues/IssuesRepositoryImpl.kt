@@ -17,7 +17,7 @@ class IssuesRepositoryImpl(
 ) : IssuesRepository {
 
     override suspend fun getRemoteLatestIssue(): Issue? {
-        val latestIssue = getPastIssues()?.first()
+        val latestIssue = getRemotePastIssues()?.first()
         localIssuesDao.insert(latestIssue)
         return latestIssue
     }
@@ -26,8 +26,17 @@ class IssuesRepositoryImpl(
         return localIssuesDao.getLatestIssues()
     }
 
-    override suspend fun getPastIssues(): List<Issue>? {
-        return remoteIssuesDao.getAllIssues().channel?.items
+    override suspend fun getRemotePastIssues(): List<Issue>? {
+        val items = remoteIssuesDao
+            .getAllIssues().channel?.items
+
+        localIssuesDao.insertIssues(items)
+
+        return items
+    }
+
+    override suspend fun getLocalPastIssues(): List<Issue>? {
+        return localIssuesDao.getPastIssues()
     }
 
     override suspend fun getAuthenticityTokens(): AuthenticityTokens {

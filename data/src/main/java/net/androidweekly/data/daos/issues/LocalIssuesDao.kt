@@ -18,6 +18,12 @@ interface LocalIssuesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(issue: Issue?)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertIssues(issues: List<Issue>?)
+
     @Query("SELECT * FROM issues LIMIT 1")
     suspend fun getLatestIssues(): Issue?
+
+    @Query("SELECT * FROM issues")
+    suspend fun getPastIssues(): List<Issue>?
 }
