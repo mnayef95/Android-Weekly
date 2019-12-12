@@ -13,6 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.transition.TransitionManager
 import net.androidweekly.core.custom.views.ErrorView
 import net.androidweekly.core.fragments.BaseFragment
+import net.androidweekly.core.utils.android.fadeAnimationNavOptions
 import net.androidweekly.core.utils.android.observe
 import net.androidweekly.data.network.Resource
 import javax.inject.Inject
@@ -22,8 +23,7 @@ class PastIssueFragment : BaseFragment() {
     @Inject
     lateinit var viewModel: PastIssueViewModel
 
-    override val layoutId: Int
-        get() = R.layout.fragment_past_issue
+    override val layoutId: Int = R.layout.fragment_past_issue
 
     private var recyclerView: RecyclerView? = null
     private var errorView: ErrorView? = null
@@ -47,14 +47,10 @@ class PastIssueFragment : BaseFragment() {
         recyclerView = view?.findViewById(R.id.recycler_view_fragment_past_issue)
         errorView = view?.findViewById(R.id.error_view_fragment_past_issues)
         progressBar = view?.findViewById(R.id.progress_bar_fragment_past_issues)
-        cardViewLocalIssuesMessage =
-            view?.findViewById(R.id.card_view_fragment_past_issues_local_issues_message)
-        constraintLayoutParent =
-            view?.findViewById(R.id.constraint_layout_fragment_past_issues_parent)
-        buttonLocalIssuesRetry =
-            view?.findViewById(R.id.button_fragment_past_issues_local_issues_retry)
-        swipeRefreshLayout =
-            view?.findViewById(R.id.swipeRefreshLayout)
+        cardViewLocalIssuesMessage = view?.findViewById(R.id.card_view_fragment_past_issues_local_issues_message)
+        constraintLayoutParent = view?.findViewById(R.id.constraint_layout_fragment_past_issues_parent)
+        buttonLocalIssuesRetry = view?.findViewById(R.id.button_fragment_past_issues_local_issues_retry)
+        swipeRefreshLayout = view?.findViewById(R.id.swipeRefreshLayout)
     }
 
     private fun initListeners() {
@@ -113,7 +109,7 @@ class PastIssueFragment : BaseFragment() {
 
             args.putParcelableArray(ARG_ITEMS, item?.getItems()?.toTypedArray())
             args.putString(ARG_TITLE, item?.title)
-            findNavController().navigate(R.id.item_menu_activity_main_latest_issue, args)
+            findNavController().navigate(R.id.fragment_past_issue_details, args, fadeAnimationNavOptions())
         }
         recyclerView?.adapter = adapter
     }

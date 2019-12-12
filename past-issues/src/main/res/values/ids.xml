@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="item_menu_activity_main_latest_issue" type="id" />
+    <item name="fragment_past_issue_details" type="id" />
 </resources>

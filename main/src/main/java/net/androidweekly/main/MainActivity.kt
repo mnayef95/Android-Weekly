@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -58,6 +57,10 @@ class MainActivity : BaseToolbarActivity() {
         buttonSubscribe = navigationViewHeader?.findViewById(R.id.button_header_activity_main_navigation_view_subscribe)
         bottomAppBar?.onSlideDown { it?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END }
         bottomAppBar?.onSlideUp { it?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER }
+
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            bottomAppBar?.slideUp()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -75,18 +78,6 @@ class MainActivity : BaseToolbarActivity() {
         setupActionBarWithNavController(navController, drawerLayoutRoot)
         toolbar?.setNavigationOnClickListener { onSupportNavigateUp() }
         bottomNavigationView?.setupWithNavController(navController)
-    }
-
-    private fun initDrawerLayout() {
-        val actionBarDrawerToggle = ActionBarDrawerToggle(
-            this,
-            drawerLayoutRoot,
-            toolbar,
-            R.string.app_name,
-            R.string.app_name
-        )
-        drawerLayoutRoot?.addDrawerListener(actionBarDrawerToggle)
-        actionBarDrawerToggle.syncState()
     }
 
     private fun initListeners() {
@@ -177,10 +168,8 @@ class MainActivity : BaseToolbarActivity() {
     override fun onBackPressed() {
         if (drawerLayoutRoot?.isDrawerOpen(GravityCompat.START) == true) {
             drawerLayoutRoot?.closeDrawer(GravityCompat.START)
-        } else {
-            if (!navController.popBackStack()) {
-                super.onBackPressed()
-            }
+        } else if (!navController.popBackStack()) {
+            super.onBackPressed()
         }
     }
 
