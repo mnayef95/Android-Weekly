@@ -4,26 +4,34 @@
     <item android:title="@string/title_menu_activity_main_navigation_view_android_weekly">
 
         <menu>
+            <group android:checkableBehavior="single">
 
-            <item
-                android:id="@+id/item_menu_activity_main_navigation_view_about"
-                android:icon="@drawable/ic_about"
-                android:title="@string/title_menu_activity_main_navigation_view_about" />
+                <item
+                    android:id="@+id/item_menu_activity_main_navigation_view_about"
+                    android:icon="@drawable/ic_about"
+                    android:title="@string/title_menu_activity_main_navigation_view_about" />
 
-            <item
-                android:id="@+id/item_menu_activity_main_navigation_view_contact_us"
-                android:icon="@drawable/ic_contact_us"
-                android:title="@string/title_menu_activity_main_navigation_view_contact_us" />
+                <item
+                    android:id="@+id/item_menu_activity_main_navigation_view_contact_us"
+                    android:icon="@drawable/ic_contact_us"
+                    android:title="@string/title_menu_activity_main_navigation_view_contact_us" />
 
-            <item
-                android:id="@+id/item_menu_activity_main_navigation_view_imprint"
-                android:icon="@drawable/ic_imprint"
-                android:title="@string/title_menu_activity_main_navigation_view_imprint" />
+                <item
+                    android:id="@+id/item_menu_activity_main_navigation_view_imprint"
+                    android:icon="@drawable/ic_imprint"
+                    android:title="@string/title_menu_activity_main_navigation_view_imprint" />
 
-            <item
-                android:id="@+id/item_menu_activity_main_navigation_view_privacy"
-                android:icon="@drawable/ic_privacy"
-                android:title="@string/title_menu_activity_main_navigation_view_privacy" />
+                <item
+                    android:id="@+id/item_menu_activity_main_navigation_view_privacy"
+                    android:icon="@drawable/ic_privacy"
+                    android:title="@string/title_menu_activity_main_navigation_view_privacy" />
+
+                <item
+                    android:id="@+id/item_menu_activity_main_settings"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_settings"
+                    android:title="@string/title_menu_activity_main_navigation_view_settings" />
+            </group>
         </menu>
     </item>
 

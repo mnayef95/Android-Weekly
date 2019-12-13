@@ -58,4 +58,9 @@
             android:name="items"
             app:argType="net.androidweekly.data.models.items.Item[]" />
     </fragment>
+
+    <fragment
+        android:id="@+id/item_menu_activity_main_settings"
+        android:name="net.androidweekly.settings.SettingsFragment"
+        android:label="@string/title_menu_activity_main_navigation_view_settings" />
 </navigation>

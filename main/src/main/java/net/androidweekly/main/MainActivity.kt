@@ -3,6 +3,7 @@ package net.androidweekly.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.SparseArray
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -31,6 +32,18 @@ import javax.inject.Inject
  */
 class MainActivity : BaseToolbarActivity() {
 
+    private val urls by lazy {
+        SparseArray<Uri>(URLS_INITIAL_CAPACITY).apply {
+            put(R.id.item_menu_activity_main_navigation_view_about, ABOUT_URI)
+            put(R.id.item_menu_activity_main_navigation_view_imprint, IMPRINT_URI)
+            put(R.id.item_menu_activity_main_navigation_view_privacy, PRIVACY_URI)
+            put(R.id.item_menu_activity_main_navigation_view_photo_editor_for_android, PHOTO_EDITOR_FOR_ANDROID_URI)
+            put(R.id.item_menu_activity_main_navigation_view_pspdfkit, PSPDF_KIT_URI)
+            put(R.id.item_menu_activity_main_navigation_view_twitter, TWITTER_URI)
+            put(R.id.item_menu_activity_main_navigation_view_facebook, FACEBOOK_URI)
+        }
+    }
+
     @Inject
     lateinit var viewModel: MainViewModel
 
@@ -58,8 +71,12 @@ class MainActivity : BaseToolbarActivity() {
         bottomAppBar?.onSlideDown { it?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END }
         bottomAppBar?.onSlideUp { it?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER }
 
-        navController.addOnDestinationChangedListener { _, _, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomAppBar?.slideUp()
+
+            if (destination.id != R.id.item_menu_activity_main_settings) {
+                navigationView?.menu?.findItem(R.id.item_menu_activity_main_settings)?.isChecked = false
+            }
         }
     }
 
@@ -92,31 +109,22 @@ class MainActivity : BaseToolbarActivity() {
             return@setOnMenuItemClickListener false
         }
 
+        initNavigationViewListener()
+    }
+
+    private fun initNavigationViewListener() {
         navigationView?.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.item_menu_activity_main_navigation_view_about -> {
-                    onAboutSelected()
-                }
                 R.id.item_menu_activity_main_navigation_view_contact_us -> {
                     onContactUsSelected()
                 }
-                R.id.item_menu_activity_main_navigation_view_imprint -> {
-                    onImprintSelected()
+                R.id.item_menu_activity_main_settings -> {
+                    navController.navigate(R.id.item_menu_activity_main_settings)
+                    onBackPressed()
+                    return@setNavigationItemSelectedListener true
                 }
-                R.id.item_menu_activity_main_navigation_view_privacy -> {
-                    onPrivacySelected()
-                }
-                R.id.item_menu_activity_main_navigation_view_photo_editor_for_android -> {
-                    onPhotoEditorForAndroidSelected()
-                }
-                R.id.item_menu_activity_main_navigation_view_pspdfkit -> {
-                    onPspdfKitSelected()
-                }
-                R.id.item_menu_activity_main_navigation_view_twitter -> {
-                    onTwitterSelected()
-                }
-                R.id.item_menu_activity_main_navigation_view_facebook -> {
-                    onFacebookSelected()
+                else -> {
+                    customTabsIntent.launchUrl(this, urls[it.itemId])
                 }
             }
             return@setNavigationItemSelectedListener false
@@ -125,10 +133,6 @@ class MainActivity : BaseToolbarActivity() {
 
     private fun onSubscribeButtonClicked() {
         customTabsIntent.launchUrl(this, SUBSCRIBE_URI)
-    }
-
-    private fun onAboutSelected() {
-        customTabsIntent.launchUrl(this, ABOUT_URI)
     }
 
     private fun onContactUsSelected() {
@@ -141,30 +145,6 @@ class MainActivity : BaseToolbarActivity() {
         }
     }
 
-    private fun onImprintSelected() {
-        customTabsIntent.launchUrl(this, IMPRINT_URI)
-    }
-
-    private fun onPrivacySelected() {
-        customTabsIntent.launchUrl(this, PRIVACY_URI)
-    }
-
-    private fun onPhotoEditorForAndroidSelected() {
-        customTabsIntent.launchUrl(this, PHOTO_EDITOR_FOR_ANDROID_URI)
-    }
-
-    private fun onPspdfKitSelected() {
-        customTabsIntent.launchUrl(this, PSPDF_KIT_URI)
-    }
-
-    private fun onTwitterSelected() {
-        customTabsIntent.launchUrl(this, TWITTER_URI)
-    }
-
-    private fun onFacebookSelected() {
-        customTabsIntent.launchUrl(this, FACEBOOK_URI)
-    }
-
     override fun onBackPressed() {
         if (drawerLayoutRoot?.isDrawerOpen(GravityCompat.START) == true) {
             drawerLayoutRoot?.closeDrawer(GravityCompat.START)
@@ -175,7 +155,10 @@ class MainActivity : BaseToolbarActivity() {
 
     private companion object {
 
+        private const val URLS_INITIAL_CAPACITY = 8
+
         private val SUBSCRIBE_URI = Uri.parse("https://androidweekly.net/")
+
         private val ABOUT_URI = Uri.parse("https://androidweekly.net/about")
         private val CONTACT_US_URI = Uri.parse("mailto:contact@androidweekly.net")
         private val IMPRINT_URI = Uri.parse("https://androidweekly.net/imprint")

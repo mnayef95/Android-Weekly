@@ -23,4 +23,5 @@
     <string name="message_email_component_not_found">There is no email application installed in your device.</string>
     <string name="past_issues">Past Issues</string>
     <string name="adversite">Adversite</string>
+    <string name="title_menu_activity_main_navigation_view_settings">Settings</string>
 </resources>

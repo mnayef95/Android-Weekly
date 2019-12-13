@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_fragment_settings_animations_category">Animations</string>
+
+    <string name="summery_fragment_settings_fab_animations">For enable or disable floating action button animations.</string>
+    <string name="title_fragment_settings_fab_animations">Home fab animations</string>
+
+    <string name="summery_fragment_settings_tabs_animations">For enable or disable tabs animations.</string>
+    <string name="title_fragment_settings_tabs_animations">Home tabs animations</string>
+</resources>
