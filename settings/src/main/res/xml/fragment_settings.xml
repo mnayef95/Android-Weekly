@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/title_fragment_settings_animations_category">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:icon="@drawable/ic_animations"
+            android:key="key_fragment_settings_main_tabs_animations"
+            android:persistent="true"
+            android:summary="@string/summery_fragment_settings_tabs_animations"
+            android:title="@string/title_fragment_settings_tabs_animations" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:icon="@drawable/ic_animations"
+            android:key="key_fragment_settings_main_fab_animations"
+            android:persistent="true"
+            android:summary="@string/summery_fragment_settings_fab_animations"
+            android:title="@string/title_fragment_settings_fab_animations" />
+    </PreferenceCategory>
+</PreferenceScreen>

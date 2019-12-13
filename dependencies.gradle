@@ -19,14 +19,15 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta3"
     implementation 'androidx.core:core-ktx:1.1.0'
+    implementation "androidx.preference:preference-ktx:1.1.0"
 
     // Kotlin coroutines for asynchronous programming and more
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2"
 
     // For make an http requests
-    implementation "com.squareup.retrofit2:retrofit:2.6.2"
-    implementation 'com.squareup.retrofit2:converter-simplexml:2.6.2'
+    implementation "com.squareup.retrofit2:retrofit:2.7.0"
+    implementation 'com.squareup.retrofit2:converter-simplexml:2.7.0'
     implementation 'pl.droidsonroids:jspoon:1.0.0'
     implementation 'pl.droidsonroids.retrofit2:converter-jspoon:1.0.0'
 
@@ -63,7 +64,7 @@ dependencies {
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.2'
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2"
     testImplementation 'org.json:json:20190722'
-    testImplementation 'org.robolectric:robolectric:4.3'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
 
     // For instrumentation test
     androidTestImplementation "io.mockk:mockk-android:1.9.3"
@@ -81,9 +82,10 @@ dependencies {
     implementation 'com.android.support:customtabs:28.0.0'
 
     // For debug
-    developmentImplementation 'com.github.whataa:pandora:androidx_v2.0.5'
-    stagingImplementation 'com.github.whataa:pandora:androidx_v2.0.5'
-    productionImplementation 'com.github.whataa:pandora-no-op:v2.0.1'
+    developmentImplementation 'com.github.whataa:pandora:2.0.6'
+    stagingImplementation 'com.github.whataa:pandora:2.0.6'
+    productionImplementation 'com.github.whataa:pandora-no-op:2.0.3'
 
+    // For user input validations
     implementation 'com.mobsandgeeks:android-saripaar:2.0.3'
 }
