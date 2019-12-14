@@ -1,9 +1,7 @@
 package net.androidweekly.main
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.SparseArray
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -31,18 +29,6 @@ import javax.inject.Inject
  * @author Mohamed Hamdan
  */
 class MainActivity : BaseToolbarActivity() {
-
-    private val urls by lazy {
-        SparseArray<Uri>(URLS_INITIAL_CAPACITY).apply {
-            put(R.id.item_menu_activity_main_navigation_view_about, ABOUT_URI)
-            put(R.id.item_menu_activity_main_navigation_view_imprint, IMPRINT_URI)
-            put(R.id.item_menu_activity_main_navigation_view_privacy, PRIVACY_URI)
-            put(R.id.item_menu_activity_main_navigation_view_photo_editor_for_android, PHOTO_EDITOR_FOR_ANDROID_URI)
-            put(R.id.item_menu_activity_main_navigation_view_pspdfkit, PSPDF_KIT_URI)
-            put(R.id.item_menu_activity_main_navigation_view_twitter, TWITTER_URI)
-            put(R.id.item_menu_activity_main_navigation_view_facebook, FACEBOOK_URI)
-        }
-    }
 
     @Inject
     lateinit var viewModel: MainViewModel
@@ -124,7 +110,7 @@ class MainActivity : BaseToolbarActivity() {
                     return@setNavigationItemSelectedListener true
                 }
                 else -> {
-                    customTabsIntent.launchUrl(this, urls[it.itemId])
+                    customTabsIntent.launchUrl(this, Urls.urls[it.itemId])
                 }
             }
             return@setNavigationItemSelectedListener false
@@ -132,12 +118,12 @@ class MainActivity : BaseToolbarActivity() {
     }
 
     private fun onSubscribeButtonClicked() {
-        customTabsIntent.launchUrl(this, SUBSCRIBE_URI)
+        customTabsIntent.launchUrl(this, Urls.SUBSCRIBE_URI)
     }
 
     private fun onContactUsSelected() {
         val intent = Intent(Intent.ACTION_SENDTO)
-        intent.data = CONTACT_US_URI
+        intent.data = Urls.CONTACT_US_URI
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         } else {
@@ -151,21 +137,5 @@ class MainActivity : BaseToolbarActivity() {
         } else if (!navController.popBackStack()) {
             super.onBackPressed()
         }
-    }
-
-    private companion object {
-
-        private const val URLS_INITIAL_CAPACITY = 8
-
-        private val SUBSCRIBE_URI = Uri.parse("https://androidweekly.net/")
-
-        private val ABOUT_URI = Uri.parse("https://androidweekly.net/about")
-        private val CONTACT_US_URI = Uri.parse("mailto:contact@androidweekly.net")
-        private val IMPRINT_URI = Uri.parse("https://androidweekly.net/imprint")
-        private val PRIVACY_URI = Uri.parse("https://androidweekly.net/privacy")
-        private val PHOTO_EDITOR_FOR_ANDROID_URI = Uri.parse("https://photoeditorsdk.com")
-        private val PSPDF_KIT_URI = Uri.parse("https://pspdfkit.com")
-        private val TWITTER_URI = Uri.parse("https://twitter.com/androidweekly")
-        private val FACEBOOK_URI = Uri.parse("https://www.facebook.com/androidweekly.net")
     }
 }

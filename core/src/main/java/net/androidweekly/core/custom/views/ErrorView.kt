@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import net.androidweekly.core.R
-import net.androidweekly.core.utils.android.bindView
 import net.androidweekly.data.network.Resource
 
 /**
@@ -25,18 +24,26 @@ class ErrorView @JvmOverloads constructor(
 
     private var retryListener: (() -> Unit)? = null
 
-    private val textViewMessage: TextView? by bindView(R.id.text_view_error_message)
-    private val textViewTitle: TextView? by bindView(R.id.text_view_error_title)
-    private val buttonRetry: Button? by bindView(R.id.button_view_error_retry)
+    private var textViewMessage: TextView? = null
+    private var textViewTitle: TextView? = null
+    private var buttonRetry: Button? = null
 
     init {
         View.inflate(context, R.layout.view_error, this)
         visibility = View.GONE
 
+        findViews()
+
         buttonRetry?.setOnClickListener {
             retryListener?.invoke()
             visibility = View.GONE
         }
+    }
+
+    private fun findViews() {
+        textViewMessage = findViewById(R.id.text_view_error_message)
+        textViewTitle = findViewById(R.id.text_view_error_title)
+        buttonRetry = findViewById(R.id.button_view_error_retry)
     }
 
     fun setError(error: Resource.Error) {
