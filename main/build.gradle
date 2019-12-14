@@ -5,4 +5,5 @@ dependencies {
     api project(':submit')
     api project(':past-issues')
     api project(':settings')
+    api project(':advertise')
 }

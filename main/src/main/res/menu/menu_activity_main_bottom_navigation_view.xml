@@ -7,10 +7,10 @@
         android:title="@string/title_menu_activity_main_navigation_view_latest_issue" />
 
     <item
-        android:id="@+id/item_menu_activity_main_advertise"
-        android:icon="@drawable/ic_advertise"
+        android:id="@+id/item_menu_activity_past_issues"
+        android:icon="@drawable/ic_history"
         android:menuCategory="system"
-        android:title="@string/title_menu_activity_main_navigation_view_advertise" />
+        android:title="@string/title_menu_activity_main_navigation_view_past_issues" />
 
     <item
         android:id="@+id/item_menu_activity_main_submit"
@@ -24,8 +24,8 @@
         android:title="@string/title_menu_activity_main_navigation_view_jobs" />
 
     <item
-        android:id="@+id/item_menu_activity_past_issues"
-        android:icon="@drawable/ic_history"
+        android:id="@+id/item_menu_activity_main_advertise"
+        android:icon="@drawable/ic_advertise"
         android:menuCategory="system"
-        android:title="@string/title_menu_activity_main_navigation_view_past_issues" />
+        android:title="@string/title_menu_activity_main_navigation_view_advertise" />
 </menu>
